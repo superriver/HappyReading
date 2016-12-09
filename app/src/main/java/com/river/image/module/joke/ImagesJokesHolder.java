@@ -1,0 +1,34 @@
+package com.river.image.module.joke;
+
+import android.view.ViewGroup;
+import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.jude.easyrecyclerview.adapter.BaseViewHolder;
+import com.river.image.R;
+import com.river.image.bean.TextJokeBean;
+import pl.droidsonroids.gif.GifImageView;
+
+/**
+ * Created by Administrator on 2016/9/14.
+ */
+public class ImagesJokesHolder extends BaseViewHolder<TextJokeBean.ShowapiResBodyBean.ContentlistBean> {
+  private GifImageView mImageView;
+  private TextView mTextView;
+
+  public ImagesJokesHolder(ViewGroup parent) {
+    super(parent, R.layout.item_image_joke);
+    mImageView = $(R.id.dongtai);
+    mTextView=$(R.id.tv_joke_title);
+  }
+
+  @Override public void setData(TextJokeBean.ShowapiResBodyBean.ContentlistBean data) {
+    super.setData(data);
+    Glide.with(getContext())
+        .load(data.img)
+        .placeholder(R.mipmap.ic_launcher)
+        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+        .into(mImageView);
+    mTextView.setText(data.title);
+  }
+}

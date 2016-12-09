@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <com.river.app.expandablelayout.library.ExpandableLayoutItem
+      android:id="@+id/expandableLayout_joke_item"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:el_headerLayout="@layout/view_header"
+      app:el_contentLayout="@layout/view_content"
+      android:background="#e74c3c"/>
+
+</RelativeLayout>
