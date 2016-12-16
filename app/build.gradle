@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
-apply plugin: 'com.android.application' //or apply plugin: 'java'
 apply plugin: 'me.tatarka.retrolambda'
 android {
   compileSdkVersion 24
@@ -79,4 +78,8 @@ dependencies {
 
 //  compile 'com.github.traex.expandablelayout:library:1.2.2'
   compile project(':expandablelayout')
+
+  compile 'com.github.mzule.fantasyslide:library:1.0.4'
+  compile 'de.hdodenhof:circleimageview:2.1.0'
+  compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }

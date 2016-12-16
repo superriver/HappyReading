@@ -19,10 +19,9 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/9/12.
  */
-public class ImageFragment extends BaseFragment
+public class ImageFragment extends BaseFragment<ImageContract.Presenter>
     implements ImageContract.View, android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener,
     RecyclerArrayAdapter.OnLoadMoreListener {
-  private IImagePresenterImpl mPresenter;
   ArrayList<GirlsBean.ResultsEntity> dataList;
   @BindView(R.id.image_recycler_view) EasyRecyclerView mRecyclerView;
   @BindView(R.id.network_error_layout) ViewStub mNetworkErrorLayout;
@@ -57,6 +56,7 @@ public class ImageFragment extends BaseFragment
         intent.putParcelableArrayListExtra("girl", dataList);
         intent.putExtra("current", position);
         startActivity(intent);
+
       }
     });
   }

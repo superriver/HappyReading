@@ -7,35 +7,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".module.picture.view.home.HomeActivity"
+    tools:context=".module.news.ui.NewsActivity"
     >
-<android.support.design.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/grid_coordinator"
-    >
-  <android.support.design.widget.AppBarLayout
-      android:layout_height="wrap_content"
+  <android.support.design.widget.CoordinatorLayout
       android:layout_width="match_parent"
-      android:theme="@style/AppTheme.AppBarOverlay"
+      android:layout_height="match_parent"
+      android:id="@+id/grid_coordinator"
       >
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/AppTheme.AppBarOverlay"
-        />
-  <include layout="@layout/content_joke"/>
-  </android.support.design.widget.AppBarLayout>
-  <android.support.v4.view.ViewPager
-      android:id="@+id/joke_viewpager"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
-</android.support.design.widget.CoordinatorLayout>
-
-
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+      <android.support.v7.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="@color/colorPrimaryDark"
+          app:popupTheme="@style/AppTheme.PopupOverlay"
+          app:theme="@style/AppTheme.AppBarOverlay"
+          />
+      <include layout="@layout/include_tablayout"/>
+    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/content_news"/>
+  </android.support.design.widget.CoordinatorLayout>
   <com.github.mzule.fantasyslide.SideBar
       android:id="@+id/leftSideBar"
       android:layout_width="200dp"
@@ -106,4 +101,4 @@
         android:text="设置"
         />
   </com.github.mzule.fantasyslide.SideBar>
-  </com.github.mzule.fantasyslide.FantasyDrawerLayout>
+</com.github.mzule.fantasyslide.FantasyDrawerLayout>

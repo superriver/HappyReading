@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">ImageDemo</string>
+  <string name="app_name">快乐阅读</string>
   <string name="action_settings">Settings</string>
   <string name="title_activity_scrolling">新闻详情</string>
   <string name="large_text">
@@ -93,5 +93,12 @@
   </string>
   <string name="news_detail">新闻详情</string>
   <string name="from">日期</string>
-  <string name="title_activity_joke">JokeActivity</string>
+  <string name="title_activity_joke">JokeActivity</string>]
+  <!-- 左边页面 -->
+  <string name="news">新闻</string>
+  <string name="photo">图片</string>
+  <string name="joke">笑话</string>
+  <string name="notification">消息</string>
+  <string name="weather">天气</string>
+  <string name="settings">设置</string>
 </resources>

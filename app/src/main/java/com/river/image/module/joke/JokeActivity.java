@@ -1,18 +1,23 @@
 package com.river.image.module.joke;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import com.river.image.R;
+import com.river.image.annotation.ActivityFragmentInject;
 import com.river.image.base.BaseActivity;
 import com.river.image.base.BaseFragment;
 import com.river.image.base.BaseFragmentAdapter;
 import com.river.image.http.ApiConfig;
 import com.river.image.module.joke.presenter.IJokePresenterImpl;
 import com.river.image.module.joke.view.IJokeView;
+import com.river.image.module.news.ui.NewsActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+@ActivityFragmentInject(contentViewId = R.layout.activity_joke)
 public class JokeActivity extends BaseActivity implements IJokeView {
 
   private static final String JOKE_TYPE = "joke_type";
@@ -22,11 +27,11 @@ public class JokeActivity extends BaseActivity implements IJokeView {
   private TextJokeFragment mTextJokeFragment;
   private ImageJokeFragment mImageJokeFragment, mDynamicJokeFragment;
   private TabLayout mTabLayout;
-
-  @Override protected int getContentViewId() {
-    return R.layout.activity_joke;
+  public static Intent newIntent(Context context, String title) {
+    Intent intent = new Intent(context, NewsActivity.class);
+    intent.putExtra("title", title);
+    return intent;
   }
-
   @Override protected int getFragmentContentId() {
     return 0;
   }

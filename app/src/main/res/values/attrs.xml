@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- 导航的背景颜色-->
+  <attr name="backgroundColor" format="reference|color"/>
+
+  <!-- 导航的文字颜色-->
+  <attr name="navColor" format="reference|color"/>
+</resources>

@@ -27,8 +27,8 @@
       android:theme="@style/AppTheme"
       >
     <activity
-        android:name=".module.picture.view.home.HomeActivity"
-        android:label="@string/app_name"
+        android:name=".module.news.ui.NewsActivity"
+        android:label="@string/news"
         android:theme="@style/AppTheme.Splash"
         >
       <intent-filter>
@@ -38,8 +38,14 @@
       </intent-filter>
     </activity>
 
-     <activity android:name=".module.picture.view.image.GirlActivity" android:theme="@style/AppTheme.NoActionBar"/>
-
+    <activity
+        android:name=".module.picture.view.image.GirlActivity"
+        android:theme="@style/AppTheme.NoActionBar"
+        />
+    <activity
+        android:name=".module.picture.view.home.HomeActivity"
+        android:theme="@style/AppTheme.NoActionBar"
+        />
 
     <activity
         android:name=".module.news.ui.NewsDetailActivity"
@@ -48,10 +54,10 @@
         >
     </activity>
     <!--<activity-->
-        <!--android:name=".module.joke.JokeActivity"-->
-        <!--android:label="@string/title_activity_joke"-->
-        <!--android:theme="@style/AppTheme"-->
-        <!--&gt;-->
+    <!--android:name=".module.joke.JokeActivity"-->
+    <!--android:label="@string/title_activity_joke"-->
+    <!--android:theme="@style/AppTheme"-->
+    <!--&gt;-->
     <!--</activity>-->
   </application>
 

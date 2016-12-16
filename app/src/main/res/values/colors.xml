@@ -27,6 +27,7 @@
     <color name="divider">#B6B6B6</color>
     <color name="background_color">#E1E6EB</color>
     <color name="item_color">#FAFAFA</color>
+    <color name="menu_text_color">#FAFAFA</color>
     <color name="fab_color">#99ff8f00</color>
 
     <color name="material_amber_100">#ffecb3</color>

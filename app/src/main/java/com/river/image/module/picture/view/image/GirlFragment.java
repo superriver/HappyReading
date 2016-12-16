@@ -116,9 +116,4 @@ public class GirlFragment extends BaseFragment  implements ViewPager.OnPageChang
   @Override public void onPageScrollStateChanged(int state) {
 
   }
-
-  @Override public void onDestroy() {
-    super.onDestroy();
-    unbinder.unbind();
-  }
 }

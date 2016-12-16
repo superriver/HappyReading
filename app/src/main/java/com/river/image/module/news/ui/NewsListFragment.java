@@ -19,6 +19,7 @@ import com.river.image.module.news.presenter.INewsListPresenter;
 import com.river.image.module.news.presenter.INewsListPresenterImpl;
 import com.river.image.module.news.view.INewsListView;
 import com.river.image.utils.UnitTransform;
+import com.socks.library.KLog;
 import java.util.List;
 
 /**
@@ -105,6 +106,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
     },1000));
     mBaseRecyclerAdapter.setOnItemClickListener(position -> {
       if(contentlistBeenList!=null){
+        KLog.d("TAG","position1--->"+contentlistBeenList.get(position).title);
           Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
           intent.putExtra(NEWS_CONTENT,contentlistBeenList.get(position));
           startActivity(intent);
