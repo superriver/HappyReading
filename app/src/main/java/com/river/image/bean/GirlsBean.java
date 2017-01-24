@@ -24,7 +24,6 @@ public class GirlsBean{
      * type : Android
      * url : https://github.com/luxiaoming/dagger2Demo
      * used : true
-     * who : 代码GG陆晓明
      */
 
     private List<ResultsEntity> results;

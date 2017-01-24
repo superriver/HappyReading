@@ -8,8 +8,6 @@ import com.river.image.base.BasePresenter;
 
 public interface INewsListPresenter extends BasePresenter{
   void refreshData();
-  //void loadMoreData();
-  void startLoadData(String channelId, String channelName,
-      String maxResult, String needAllList, String needContent, String needHtml, String page,
-      String appid, String timestamp, String title, String showapi_sign);
+  void loadMoreData();
+  void startLoadData(String channelId, String channelName);
 }

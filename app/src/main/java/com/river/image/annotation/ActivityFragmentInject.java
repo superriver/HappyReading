@@ -13,4 +13,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ActivityFragmentInject {
   int contentViewId() default  -1;
+  int toolbarTitle() default  -1;
+  /**
+   * 是否存在NavigationView
+   *
+   * @return
+   */
+  boolean hasNavigationView() default false;
 }

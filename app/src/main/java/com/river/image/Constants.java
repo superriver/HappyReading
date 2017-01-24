@@ -14,4 +14,5 @@ public class Constants {
   public static final int TYPE_PIC = 102;
 
   public static final int TYPE_JOKE = 103;
+  public static final String TAG="TAG";
 }

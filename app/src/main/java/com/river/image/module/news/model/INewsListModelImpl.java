@@ -27,7 +27,6 @@ public class INewsListModelImpl implements INewsListModel<NewsBean> {
         callBack.requestError(e.getMessage());
         KLog.d("TAG",e.fillInStackTrace());
       }
-
       @Override public void onNext(NewsBean newsBean) {
         callBack.requestSuccess(newsBean);
       }

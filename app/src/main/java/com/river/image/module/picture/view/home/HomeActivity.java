@@ -2,6 +2,7 @@ package com.river.image.module.picture.view.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
 import com.river.image.R;
@@ -12,10 +13,16 @@ import com.river.image.base.BaseFragment;
 /**
  * Created by Administrator on 2016/9/12.
  */
-@ActivityFragmentInject(contentViewId = R.layout.activity_main) public class HomeActivity
+@ActivityFragmentInject(
+    contentViewId = R.layout.activity_main,
+    toolbarTitle = R.string.photo,
+    hasNavigationView = true
+)
+public class HomeActivity
     extends BaseActivity {
   @BindView(R.id.toolbar) Toolbar mToolbar;
   // @BindView(R.id.fab) FloatingActionButton mFab;
+  private DrawerLayout drawerLayout;
 
   public static Intent newIntent(Context context, String title) {
     Intent intent = new Intent(context, HomeActivity.class);
@@ -28,9 +35,8 @@ import com.river.image.base.BaseFragment;
   }
 
   @Override protected void initView() {
-    mToolbar.setTitle("图片");
+    // mToolbar.setTitle("图片");
     setSupportActionBar(mToolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setTitle(getIntent().getStringExtra("title"));
     if (null == getSupportFragmentManager().getFragments()) {
       BaseFragment firstFragment = getFirstFragment();
@@ -53,6 +59,4 @@ import com.river.image.base.BaseFragment;
   protected BaseFragment getFirstFragment() {
     return ImageFragment.getInstance();
   }
-
-
 }

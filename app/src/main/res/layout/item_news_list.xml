@@ -24,7 +24,7 @@
         android:layout_margin="4dp"
         android:scaleType="centerCrop"
         android:transitionName="photos"
-        tools:src="@drawable/ic_header"/>
+        tools:src="@drawable/ic_loading"/>
 
     <TextView
         android:id="@+id/tv_news_summary_title"

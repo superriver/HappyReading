@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import com.socks.library.KLog;
 
 /**
  * Created by Administrator on 2016/9/12.
@@ -35,7 +34,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     if(mFragmentRootView==null) {
       mFragmentRootView = inflater.inflate(getLayoutId(), container, false);
       unbinder = ButterKnife.bind(this, mFragmentRootView);
-      KLog.d("TAG","BaseFragment");
     }
     initData();
     return mFragmentRootView;

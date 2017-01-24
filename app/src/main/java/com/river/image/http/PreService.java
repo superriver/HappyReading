@@ -3,7 +3,7 @@ package com.river.image.http;
 import com.river.image.bean.GirlsBean;
 import com.river.image.bean.NewsBean;
 import com.river.image.bean.NewsChannel;
-import com.river.image.bean.TextJokeBean;
+import com.river.image.bean.JokeBean;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -38,7 +38,7 @@ public interface PreService {
   /**
    * 文本笑话大全API
    */
-  @GET("{type}") Observable<TextJokeBean> getTextJokeList(@Path("type") String type,
+  @GET("{type}") Observable<JokeBean> getTextJokeList(@Path("type") String type,
       @Query("maxResult") String maxResult,
       @Query("page") String page,
       @Query("showapi_appid") String appid,

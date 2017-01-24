@@ -1,11 +1,10 @@
 package com.river.image.module.news.ui;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -14,7 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.river.image.R;
 import com.river.image.annotation.ActivityFragmentInject;
 import com.river.image.base.BaseActivity;
-import com.river.image.bean.NewsBean;
+import com.river.image.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;
 import zhou.widget.RichText;
 
 @ActivityFragmentInject(contentViewId = R.layout.content_news_detail)
@@ -25,7 +24,7 @@ public class NewsDetailActivity extends BaseActivity {
   @BindView(R.id.tv_news_detail_from)  TextView mFrom;
   @BindView(R.id.tv_news_detail_body)  RichText mRichText;
   @BindView(R.id.iv_news_detail_image)  ImageView mImageView;
-  private NewsBean.ShowapiResBodyBean.PageBean.ContentBean mContentBean;
+  private ContentBean mContentBean;
 
   @Override protected int getFragmentContentId() {
     return 0;
@@ -33,21 +32,19 @@ public class NewsDetailActivity extends BaseActivity {
 
   @Override protected void initView() {
     setSupportActionBar(mToolbar);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null)
-            .show();
-      }
-    });
+    fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        .setAction("Action", null)
+        .show());
 
     initData();
   }
 
   private void initData() {
-    Intent intent = getIntent();
-    mContentBean = (NewsBean.ShowapiResBodyBean.PageBean.ContentBean) intent.getSerializableExtra(
-        "news_content");
+    Bundle bundle = getIntent().getExtras();
+    mContentBean=
+        (ContentBean) bundle.getSerializable("news_content");
+    //mContentBean = (NewsBean.ShowapiResBodyBean.PageBean.ContentBean) intent.getSerializableExtra(
+    //    "news_content");
     if (mContentBean != null) {
       if (!TextUtils.isEmpty(mContentBean.content)) {
         mRichText.setText(mContentBean.content);
@@ -64,7 +61,6 @@ public class NewsDetailActivity extends BaseActivity {
           .into(mImageView);
     }
     mTitle.setText(mContentBean.title);
-
     mFrom.setText(getString(R.string.from, mContentBean.source, mContentBean.pubDate));
   }
 }

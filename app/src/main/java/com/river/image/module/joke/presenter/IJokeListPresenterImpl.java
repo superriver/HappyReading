@@ -1,7 +1,7 @@
 package com.river.image.module.joke.presenter;
 
 import com.river.image.base.BasePresenterImpl;
-import com.river.image.bean.TextJokeBean;
+import com.river.image.bean.JokeBean;
 import com.river.image.module.joke.model.IJokeModel;
 import com.river.image.module.joke.model.IJokeModelImpl;
 import com.river.image.module.joke.view.IJokeListView;
@@ -10,7 +10,7 @@ import com.river.image.module.joke.view.IJokeListView;
  * Created by Administrator on 2016/11/28.
  */
 
-public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,TextJokeBean> implements
+public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,JokeBean> implements
     IJokeListPresenter {
   private IJokeModel mJokeModel =null;
 
@@ -25,7 +25,7 @@ public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,Text
         showapi_sign);
   }
 
-  @Override public void requestSuccess(TextJokeBean data) {
+  @Override public void requestSuccess(JokeBean data) {
       mView.updateJokeList(data);
   }
 }

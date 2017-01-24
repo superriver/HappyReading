@@ -28,7 +28,7 @@ public class INewsChannelModelImpl implements INewsChannelModel<NewsChannel> {
             KLog.d("TAG",e.fillInStackTrace());
           }
           @Override public void onNext(NewsChannel newsChannels) {
-            KLog.d("TAG","INewsChannelModelImpl");
+           // KLog.d("TAG","INewsChannelModelImpl");
            callBack.requestSuccess(newsChannels);
             NewsChannelDB.insertDB(newsChannels);
 

@@ -5,4 +5,8 @@
 
   <!-- 导航的文字颜色-->
   <attr name="navColor" format="reference|color"/>
+
+  <declare-styleable name="PacManRefreshHead">
+    <attr name="pacIconColor" format="color|reference"/>
+  </declare-styleable>
 </resources>

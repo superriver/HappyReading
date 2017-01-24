@@ -39,6 +39,7 @@ public class NewsBean{
 
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class ContentBean implements Serializable{
+
           @JsonProperty("content")
           public String content;
           @JsonProperty("pubDate")

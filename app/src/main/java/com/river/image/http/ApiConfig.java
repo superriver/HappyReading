@@ -12,7 +12,6 @@ public class ApiConfig {
   //新闻
    public static final String NEWS_URL = "https://route.showapi.com/";
   public static final String  SHOWAPI_APPID = "13642";
-  public static final String  SHOWAPI_TIMESTAP = "20161018161339";
   public static final String  SHOWAPI_SIGN = "fb6b356d2fb740e38d84b4515f08c51e";
   //视频
   public static final String VIDEO_API="";

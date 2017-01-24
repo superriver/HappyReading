@@ -6,13 +6,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.river.image.R;
-import com.river.image.bean.TextJokeBean;
+import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
 import pl.droidsonroids.gif.GifImageView;
-
 /**
  * Created by Administrator on 2016/9/14.
  */
-public class ImagesJokesHolder extends BaseViewHolder<TextJokeBean.ShowapiResBodyBean.ContentlistBean> {
+public class ImagesJokesHolder extends BaseViewHolder<ContentlistBean> {
   private GifImageView mImageView;
   private TextView mTextView;
 
@@ -22,7 +21,7 @@ public class ImagesJokesHolder extends BaseViewHolder<TextJokeBean.ShowapiResBod
     mTextView=$(R.id.tv_joke_title);
   }
 
-  @Override public void setData(TextJokeBean.ShowapiResBodyBean.ContentlistBean data) {
+  @Override public void setData(ContentlistBean data) {
     super.setData(data);
     Glide.with(getContext())
         .load(data.img)

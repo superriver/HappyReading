@@ -29,7 +29,7 @@
     <activity
         android:name=".module.news.ui.NewsActivity"
         android:label="@string/news"
-        android:theme="@style/AppTheme.Splash"
+        android:theme="@style/AppTheme.NoActionBar"
         >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -50,15 +50,18 @@
     <activity
         android:name=".module.news.ui.NewsDetailActivity"
         android:label="@string/title_activity_scrolling"
-        android:theme="@style/AppTheme"
-        >
-    </activity>
-    <!--<activity-->
-    <!--android:name=".module.joke.JokeActivity"-->
-    <!--android:label="@string/title_activity_joke"-->
-    <!--android:theme="@style/AppTheme"-->
-    <!--&gt;-->
-    <!--</activity>-->
+        android:theme="@style/AppTheme.NoActionBar"
+        />
+
+    <activity
+        android:name=".module.joke.JokeActivity"
+        android:label="@string/title_activity_joke"
+        android:theme="@style/AppTheme.NoActionBar"
+        />
+    <activity android:name=".module.joke.view.image.ImageDetailActivity"
+        android:label="@string/title_activity_joke"
+        android:theme="@style/AppTheme.NoActionBar"
+        />
   </application>
 
 </manifest>
