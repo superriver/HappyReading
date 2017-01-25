@@ -7,6 +7,7 @@ import com.river.image.base.BasePresenter;
  */
 
 public interface IJokeListPresenter extends BasePresenter{
-  void startLoadData(String type,String maxResult, String page,
-      String appid, String timestamp, String showapi_sign);
+  void startLoadData(String type);
+  void refreshData();
+  void loadMoreData();
 }

@@ -56,7 +56,7 @@ public class NewsActivity extends BaseActivity<INewsChannelPresenter> implements
   @Override public void getDataByNet(NewsChannel newsChannel) {
     //mPagerAdapter.clear();
     //mTabLayout.removeAllTabs();
-    List<NewsChannel.NewsChannelBody.ChannelListBean> channelLists =
+    NewsChannel.NewsChannelBody.ChannelListBean[] channelLists =
         newsChannel.res_body.channelList;
     for (NewsChannel.NewsChannelBody.ChannelListBean channelListBean : channelLists) {
       mFragments.add(

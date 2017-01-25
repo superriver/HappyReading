@@ -49,9 +49,7 @@ public class JokeActivity extends BaseActivity implements IJokeView{
      TextJokeFragment mTextJokeFragment;
      ImagesJokeFragment mImageJokeFragment, mDynamicJokeFragment;
     setSupportActionBar(mToolbar);
-   // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setTitle(getIntent().getStringExtra("title"));
-    // ExamplePagerAdapter mExamplePagerAdapter = new ExamplePagerAdapter(mTitles,mLayoutList);
     List<BaseFragment> fragments = new ArrayList<>();
     mTextJokeFragment = new TextJokeFragment();
 

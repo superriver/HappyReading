@@ -1,5 +1,6 @@
 package com.river.image.module.joke.view.image;
 
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import com.river.image.annotation.ActivityFragmentInject;
 import com.river.image.base.BaseActivity;
 import com.river.image.base.BaseFragment;
 import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
+import java.util.ArrayList;
 import java.util.List;
 import org.greenrobot.eventbus.EventBus;
 
@@ -28,7 +30,10 @@ import org.greenrobot.eventbus.EventBus;
 
 
   protected BaseFragment getFirstFragment() {
-    mGirlFragment =  ImageDetailFragment.getInstance(getIntent().getParcelableArrayListExtra("image"),
+    Bundle  bundle = getIntent().getExtras();
+    ArrayList<ContentlistBean> mImageList=
+         (ArrayList<ContentlistBean>) bundle.getSerializable("image");
+    mGirlFragment =  ImageDetailFragment.getInstance(mImageList,
         getIntent().getIntExtra("current", 0));
     return mGirlFragment;
   }

@@ -22,7 +22,7 @@ import okio.Buffer;
 import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -48,7 +48,7 @@ public class RetrofitManager {
   private RetrofitManager(@HostType.HostTypeChecker int hostType) {
     Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiConfig.getHost(hostType))
         .client(getOkHttpClient())
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(JacksonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .build();
     mService = retrofit.create(PreService.class);

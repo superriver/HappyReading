@@ -18,6 +18,7 @@ import com.river.image.bean.NewsBean;
 import com.river.image.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;
 import com.river.image.callback.OnItemClickAdapter;
 import com.river.image.callback.OnLoadMoreListener;
+import com.river.image.common.DataType;
 import com.river.image.module.news.presenter.INewsListPresenter;
 import com.river.image.module.news.presenter.INewsListPresenterImpl;
 import com.river.image.module.news.ui.adapter.BaseRecyclerAdapter;
@@ -72,10 +73,25 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
     return newsFragment;
   }
 
-  @Override public void updateNewsList(NewsBean newsBean) {
+  @Override public void updateNewsList(NewsBean newsBean,String type) {
     List<ContentBean> contentlistBeenList = newsBean.showapi_res_body.pagebean.contentlist;
     if(mBaseRecyclerAdapter==null){
       initNewsList(contentlistBeenList);
+    }
+    switch (type) {
+      case DataType.DATA_LOAD_SUCCESS:
+        mBaseRecyclerAdapter.addMoreData(contentlistBeenList);
+        break;
+      case DataType.DATA_LOAD_FAIL:
+
+        break;
+      case DataType.DATA_REFRESH_SUCCESS:
+        mBaseRecyclerAdapter.loadMoreSuccess();
+        mBaseRecyclerAdapter.addMoreData(contentlistBeenList);
+        break;
+      case DataType.DATA_REFRESH_FAIL:
+
+        break;
     }
   }
 
@@ -131,33 +147,6 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
         mPresenter.loadMoreData();
       }
     });
-    // mBaseRecyclerAdapter.addAll(contentlistBeenList);
-    //mBaseRecyclerAdapter.setMore(R.layout.load_more_layout,
-    //     new RecyclerArrayAdapter.OnMoreListener() {
-    //       @Override public void onMoreShow() {
-    //         if (contentlistBeenList.size() % 20 == 0) {
-    //           mPage++;
-    //           mPresenter.startLoadData(mNewsChannelId, mNewsChannelName, "20", "1", "1", "0",
-    //               String.valueOf(mPage), ApiConfig.SHOWAPI_APPID, null, null,
-    //               ApiConfig.SHOWAPI_SIGN);
-    //         }
-    //       }
-
-    //       @Override public void onMoreClick() {
-    //
-    //       }
-    //     });
-    //  mBaseRecyclerAdapter.setNoMore(R.layout.no_more_layout);
-
-    //mBaseRecyclerAdapter.setOnItemClickListener(position -> {
-    //  if (contentlistBeenList != null) {
-    //    Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-    //    Bundle bundle = new Bundle();
-    //    bundle.putSerializable(NEWS_CONTENT, contentlistBeenList.get(position));
-    //    intent.putExtras(bundle);
-    //    startActivity(intent);
-    //  }
-    //});
   }
 
   //

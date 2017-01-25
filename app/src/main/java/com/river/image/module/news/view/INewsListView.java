@@ -8,6 +8,6 @@ import com.river.image.bean.NewsBean;
  */
 
 public interface INewsListView extends BaseView{
-      void updateNewsList(NewsBean newsBean);
+      void updateNewsList(NewsBean newsBean,String type);
       //void runOnUiThread(Runnable runnable);
 }

@@ -2,7 +2,6 @@ package com.river.image.module.joke.view.image;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import butterknife.BindView;
@@ -13,7 +12,6 @@ import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
 import com.river.image.utils.BitmapUtil;
 import com.river.image.widget.PinchImageView;
 import java.util.ArrayList;
-import java.util.List;
 /**
  * Created by Administrator on 2016/9/22.
  */
@@ -23,13 +21,13 @@ public class ImageDetailFragment extends BaseFragment  implements ViewPager.OnPa
   private ImageDetailAdapter mAdapter;
 
   private int current;
-  private List<ContentlistBean> datas;
+  private ArrayList<ContentlistBean> datas;
   @BindView(R.id.viewpager) ViewPager mViewPager;
 
-  public static ImageDetailFragment getInstance(ArrayList<Parcelable> datas,int currentIndex){
+  public static ImageDetailFragment getInstance(ArrayList<ContentlistBean> datas,int currentIndex){
     Bundle bundle = new Bundle();
     ImageDetailFragment imageDetailFragment = new ImageDetailFragment();
-    bundle.putParcelableArrayList("image",datas);
+    bundle.putSerializable("image",datas);
     bundle.putInt("current",currentIndex);
     imageDetailFragment.setArguments(bundle);
     return imageDetailFragment;
@@ -44,7 +42,7 @@ public class ImageDetailFragment extends BaseFragment  implements ViewPager.OnPa
    // Log.d("TAG","initData--》"+datas.getData().size());
     Bundle bundle = getArguments();
     if(null!=bundle){
-      datas =   bundle.getParcelableArrayList("image");
+      datas= (ArrayList<ContentlistBean>) bundle.getSerializable("image");
       current = bundle.getInt("current");
     }
     mAdapter = new ImageDetailAdapter(mActivity,datas);

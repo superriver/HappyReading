@@ -23,11 +23,14 @@ public class ImagesJokesHolder extends BaseViewHolder<ContentlistBean> {
 
   @Override public void setData(ContentlistBean data) {
     super.setData(data);
-    Glide.with(getContext())
-        .load(data.img)
-        .placeholder(R.mipmap.ic_launcher)
-        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-        .into(mImageView);
-    mTextView.setText(data.title);
+    if(null!=data){
+      Glide.with(getContext())
+          .load(data.img)
+          .placeholder(R.mipmap.ic_launcher)
+          .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+          .into(mImageView);
+      mTextView.setText(data.title);
+    }
+
   }
 }

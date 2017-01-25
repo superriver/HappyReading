@@ -2,7 +2,6 @@ package com.river.image.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/8/25.
@@ -38,10 +37,9 @@ public class NewsChannel{
      * name : 国内焦点
      */
     @JsonProperty("channelList")
-    public List<ChannelListBean> channelList;
+    public ChannelListBean[] channelList;
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class ChannelListBean {
-      @JsonProperty("channelId")
       public String channelId;
       @JsonProperty("name")
       public String name;

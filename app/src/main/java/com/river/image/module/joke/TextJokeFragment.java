@@ -12,6 +12,7 @@ import com.river.app.expandablelayout.library.ExpandableLayoutListView;
 import com.river.image.R;
 import com.river.image.base.BaseFragment;
 import com.river.image.bean.JokeBean;
+import com.river.image.common.DataType;
 import com.river.image.http.ApiConfig;
 import com.river.image.module.joke.presenter.IJokeListPresenter;
 import com.river.image.module.joke.presenter.IJokeListPresenterImpl;
@@ -29,6 +30,8 @@ public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implement
   private static final String POSITION = "position";
   @BindView(R.id.listview) ExpandableLayoutListView listView;
   private List<JokeBean.ShowapiResBodyBean.ContentlistBean> mContentlist;
+  private JokeAdapter mJokeAdapter;
+
   @Override protected int getLayoutId() {
     return  R.layout.fragment_text_joke;
   }
@@ -36,12 +39,34 @@ public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implement
 
   @Override protected void initData() {
     mPresenter = new IJokeListPresenterImpl(this);
-    mPresenter.startLoadData(ApiConfig.TEXT_JOKE, "20", "1", ApiConfig.SHOWAPI_APPID, null, ApiConfig.SHOWAPI_SIGN);
+    mPresenter.startLoadData(ApiConfig.TEXT_JOKE);
   }
 
-  @Override public void updateJokeList(JokeBean jokeBean) {
-    mContentlist = jokeBean.showapi_res_body.contentlist;
-    listView.setAdapter(new JokeAdapter(getActivity(),R.layout.item_jokes_list,mContentlist));
+  @Override public void updateJokeList(JokeBean jokeBean,String type) {
+    if(null!=jokeBean) {
+      mContentlist = jokeBean.showapi_res_body.contentlist;
+      mJokeAdapter = new JokeAdapter(getActivity(), R.layout.item_jokes_list, mContentlist);
+      listView.setAdapter(mJokeAdapter);
+
+    }
+    switch (type) {
+      case DataType.DATA_LOAD_SUCCESS:
+        mContentlist.addAll(jokeBean.showapi_res_body.contentlist);
+        mJokeAdapter.addAll(jokeBean.showapi_res_body.contentlist);
+        break;
+      case DataType.DATA_LOAD_FAIL:
+
+        break;
+      case DataType.DATA_REFRESH_SUCCESS:
+        mContentlist.clear();
+        mContentlist.addAll(jokeBean.showapi_res_body.contentlist);
+        mJokeAdapter.clear();
+        mJokeAdapter.addAll(jokeBean.showapi_res_body.contentlist);
+        break;
+      case DataType.DATA_REFRESH_FAIL:
+
+        break;
+    }
   }
 
   class JokeAdapter extends ArrayAdapter<JokeBean.ShowapiResBodyBean.ContentlistBean> {

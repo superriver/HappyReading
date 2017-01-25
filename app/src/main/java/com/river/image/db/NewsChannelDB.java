@@ -25,7 +25,7 @@ public class NewsChannelDB implements Closeable{
     mRealm.executeTransaction(new Realm.Transaction() {
       @Override public void execute(Realm realm) {
         ArrayList<NewsChannelBean> channelList=new ArrayList<>();
-        List<NewsChannel.NewsChannelBody.ChannelListBean> channelLists =
+       NewsChannel.NewsChannelBody.ChannelListBean[] channelLists =
             newsChannel.res_body.channelList;
         for (NewsChannel.NewsChannelBody.ChannelListBean channelListBean : channelLists) {
           NewsChannelBean newsChannelBean = mRealm.createObject(NewsChannelBean.class);
