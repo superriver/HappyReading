@@ -17,7 +17,6 @@ import com.river.image.base.BaseFragment;
 import com.river.image.bean.NewsBean;
 import com.river.image.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;
 import com.river.image.callback.OnItemClickAdapter;
-import com.river.image.callback.OnLoadMoreListener;
 import com.river.image.common.DataType;
 import com.river.image.module.news.presenter.INewsListPresenter;
 import com.river.image.module.news.presenter.INewsListPresenterImpl;
@@ -38,7 +37,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
   protected String mNewsChannelId;
   protected String mNewsChannelName;
   @BindView(R.id.news_recycler_view) EasyRecyclerView mEasyRecyclerView;
-
+  List<ContentBean> contentList;
   //private BaseRecyclerAdapter mBaseRecyclerAdapter;
   private BaseRecyclerAdapter<ContentBean> mBaseRecyclerAdapter;
 
@@ -60,7 +59,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
     //String sysDatetime = fmt.format(new Date());
     //KLog.d("TAG", "time1-------->" + sysDatetime);
     mPresenter = new INewsListPresenterImpl(this);
-    mPresenter.startLoadData(mNewsChannelId, mNewsChannelName);
+    mPresenter.startLoadData(mNewsChannelId, mNewsChannelName,1);
   }
 
   public static NewsListFragment newsInstance(String id, String title) {
@@ -74,20 +73,21 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
   }
 
   @Override public void updateNewsList(NewsBean newsBean,String type) {
-    List<ContentBean> contentlistBeenList = newsBean.showapi_res_body.pagebean.contentlist;
+    contentList=newsBean.showapi_res_body.pagebean.contentlist;
     if(mBaseRecyclerAdapter==null){
-      initNewsList(contentlistBeenList);
+      initNewsList(contentList);
     }
     switch (type) {
       case DataType.DATA_LOAD_SUCCESS:
-        mBaseRecyclerAdapter.addMoreData(contentlistBeenList);
+        mBaseRecyclerAdapter.loadMoreSuccess();
+        mBaseRecyclerAdapter.addMoreData(contentList);
         break;
       case DataType.DATA_LOAD_FAIL:
 
         break;
       case DataType.DATA_REFRESH_SUCCESS:
-        mBaseRecyclerAdapter.loadMoreSuccess();
-        mBaseRecyclerAdapter.addMoreData(contentlistBeenList);
+        mBaseRecyclerAdapter.enableLoadMore(true);
+        mBaseRecyclerAdapter.setData(contentList);
         break;
       case DataType.DATA_REFRESH_FAIL:
 
@@ -113,6 +113,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
               .diskCacheStrategy(DiskCacheStrategy.SOURCE)
               .into(holder.getImageView(R.id.iv_news_summary_photo));
         }
+        //KLog.d("TAG","item.title->"+item.title);
         holder.getTextView(R.id.tv_news_summary_title).setText(item.title);
         holder.getTextView(R.id.tv_news_summary_digest).setText(item.desc);
         holder.getTextView(R.id.tv_news_summary_ptime).setText(item.pubDate);
@@ -142,11 +143,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
     mEasyRecyclerView.setRefreshListener(() -> mEasyRecyclerView.postDelayed(() -> {
       mPresenter.refreshData();
     }, 1000));
-    mBaseRecyclerAdapter.setOnLoadMoreListener(10, new OnLoadMoreListener() {
-      @Override public void loadMore() {
-        mPresenter.loadMoreData();
-      }
-    });
+    mBaseRecyclerAdapter.setOnLoadMoreListener(10, () -> mPresenter.loadMoreData());
   }
 
   //

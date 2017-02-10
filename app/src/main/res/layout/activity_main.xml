@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.github.mzule.fantasyslide.FantasyDrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".module.picture.view.home.HomeActivity"
+    tools:context=".module.news.ui.NewsActivity"
     >
   <android.support.design.widget.CoordinatorLayout
       android:layout_width="match_parent"
@@ -18,95 +18,13 @@
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay"
         >
-      <android.support.v7.widget.Toolbar
-          android:id="@+id/toolbar"
-          android:layout_width="match_parent"
-          android:layout_height="?attr/actionBarSize"
-          android:background="@color/colorPrimaryDark"
-          app:popupTheme="@style/AppTheme.PopupOverlay"
-          app:theme="@style/AppTheme.AppBarOverlay"
-          />
+      <include layout="@layout/include_toolbar"/>
     </android.support.design.widget.AppBarLayout>
-   <com.github.mzule.fantasyslide.FantasyDrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".module.news.ui.NewsActivity"
-    >
-     <include layout="@layout/content_image"/>
-    <com.github.mzule.fantasyslide.SideBar
-        android:id="@+id/leftSideBar"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        app:maxTranslationX="66dp"
-        >
-      <LinearLayout
-          android:id="@+id/userInfo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="30dp"
-          android:gravity="center_horizontal"
-          android:onClick="onClick"
-          android:orientation="vertical"
-          >
-        <com.river.image.widget.CircleImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/me"
-            app:civ_border_color="@color/menu_text_color"
-            app:civ_border_width="2dp"
-            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="mzule"
-            android:textColor="@color/menu_text_color"
-            android:textSize="18sp"
-            />
-      </LinearLayout>
-      <TextView
-          android:id="@+id/action_news"
-          style="@style/MenuText"
-          android:drawableLeft="@drawable/circle"
-          android:text="@string/news"
-          />
-
-      <TextView
-          android:id="@+id/action_photo"
-          style="@style/MenuText"
-          android:drawableLeft="@drawable/wallet"
-          android:text="@string/photo"
-          />
-
-      <TextView
-          android:id="@+id/action_jokes"
-          style="@style/MenuText"
-          android:drawableLeft="@drawable/coupon"
-          android:text="@string/joke"
-          />
-
-      <TextView
-          style="@style/MenuText"
-          android:drawableLeft="@drawable/friends"
-          android:text="@string/settings"
-          />
-
-      <TextView
-          style="@style/MenuText"
-          android:drawableLeft="@drawable/settings"
-          android:text="设置"
-          />
-    </com.github.mzule.fantasyslide.SideBar>
-  </com.github.mzule.fantasyslide.FantasyDrawerLayout>
+    <include layout="@layout/content_image"/>
 
   </android.support.design.widget.CoordinatorLayout>
-</RelativeLayout>
+
+  <include layout="@layout/slide_layout"/>
+</com.github.mzule.fantasyslide.FantasyDrawerLayout>
+

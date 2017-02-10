@@ -37,43 +37,40 @@ public class ImagesJokeFragment extends BaseFragment<IJokeListPresenter> impleme
     String type = bundle.getString(JOKE_TYPE);
     mPresenter = new IJokeListPresenterImpl(this);
     mPresenter.startLoadData(type);
+    initRecyclerView();
   }
+  private void initRecyclerView() {
+    mImageList = new ArrayList<>();
+    mImagesJokesAdapter = new ImagesJokesAdapter(getContext());
+    //mImagesJokesAdapter.addAll(mImageList);
+    StaggeredGridLayoutManager staggeredGridLayoutManager =
+        new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+    mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+    mRecyclerView.setAdapter(mImagesJokesAdapter);
+    mImagesJokesAdapter.setOnItemClickListener(position -> {
+      Intent intent = new Intent(mActivity, ImageDetailActivity.class);
+      // RxBus.get().post("imageJoke",mImageList);
+      //  EventBus.getDefault().post(new MessageEvent(position,mImageList));
+      //intent.putParcelableArrayListExtra("image", mImageList);
+      intent.putExtra("image",mImageList);
+      intent.putExtra("current", position);
+      startActivity(intent);
+    });
+    mImagesJokesAdapter.setMore(R.layout.load_more_layout,
+        new RecyclerArrayAdapter.OnMoreListener() {
+          @Override public void onMoreShow() {
+            mPresenter.loadMoreData();
+          }
 
+          @Override public void onMoreClick() {
+
+          }
+        });
+    mRecyclerView.setRefreshListener(() -> mPresenter.refreshData()
+
+    );
+  }
   @Override public void updateJokeList(JokeBean jokeBean, String type) {
-    if (null != jokeBean) {
-      mImageList = new ArrayList<>();
-      mImageList.addAll(jokeBean.showapi_res_body.contentlist);
-      mImagesJokesAdapter = new ImagesJokesAdapter(getContext());
-      mImagesJokesAdapter.addAll(mImageList);
-      StaggeredGridLayoutManager staggeredGridLayoutManager =
-          new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-      mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-      mRecyclerView.setAdapter(mImagesJokesAdapter);
-      mImagesJokesAdapter.setOnItemClickListener(position -> {
-        Intent intent = new Intent(mActivity, ImageDetailActivity.class);
-        // RxBus.get().post("imageJoke",mImageList);
-        //  EventBus.getDefault().post(new MessageEvent(position,mImageList));
-       //intent.putParcelableArrayListExtra("image", mImageList);
-        intent.putExtra("image",mImageList);
-        intent.putExtra("current", position);
-        startActivity(intent);
-      });
-      //imagesJokesAdapter.setMore();
-      mImagesJokesAdapter.setMore(R.layout.load_more_layout,
-          new RecyclerArrayAdapter.OnMoreListener() {
-            @Override public void onMoreShow() {
-              mPresenter.loadMoreData();
-            }
-
-            @Override public void onMoreClick() {
-
-            }
-          });
-      mRecyclerView.setRefreshListener(() -> mPresenter.refreshData()
-
-      );
-    }
-
     switch (type) {
       case DataType.DATA_LOAD_SUCCESS:
         mImageList.addAll(jokeBean.showapi_res_body.contentlist);

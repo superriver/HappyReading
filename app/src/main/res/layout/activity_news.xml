@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.github.mzule.fantasyslide.FantasyDrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".module.news.ui.NewsActivity"
     >
   <android.support.design.widget.CoordinatorLayout
       android:layout_width="match_parent"
@@ -16,17 +18,14 @@
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay"
         >
-      <android.support.v7.widget.Toolbar
-          android:id="@+id/toolbar"
-          android:layout_width="match_parent"
-          android:layout_height="?attr/actionBarSize"
-          android:background="@color/colorPrimaryDark"
-          app:popupTheme="@style/AppTheme.PopupOverlay"
-          app:theme="@style/AppTheme.AppBarOverlay"
-          />
+      <include layout="@layout/include_toolbar"/>
       <include layout="@layout/include_tablayout"/>
     </android.support.design.widget.AppBarLayout>
-    <include layout="@layout/slide_layout"/>
+
+      <include layout="@layout/content_news"/>
+
   </android.support.design.widget.CoordinatorLayout>
-</RelativeLayout>
+
+  <include layout="@layout/slide_layout"/>
+</com.github.mzule.fantasyslide.FantasyDrawerLayout>
 

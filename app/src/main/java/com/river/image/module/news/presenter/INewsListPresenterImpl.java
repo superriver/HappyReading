@@ -18,42 +18,40 @@ public class INewsListPresenterImpl extends BasePresenterImpl<INewsListView, New
   private INewsListModel<NewsBean> mINewsListModel = null;
   private String channelId;
   private String channelName;
-  private int maxResult;
+  private int maxResult=20;
   private int page=1;
   private boolean isRefresh=true;
   public INewsListPresenterImpl(INewsListView view) {
     super(view);
     mINewsListModel = new INewsListModelImpl();
-    maxResult=20;
   }
 
   @Override public void refreshData() {
     page=1;
+    maxResult=20;
     isRefresh=true;
 
-    startLoadData(channelId, channelName);
+    startLoadData(channelId, channelName,page);
   }
 
   @Override public void loadMoreData() {
     isRefresh=false;
-    KLog.d("TAG","page->"+page);
-    startLoadData(channelId, channelName);
+    page++;
+    startLoadData(channelId, channelName,page);
   }
 
-  @Override public void startLoadData(String channelId, String channelName) {
-    KLog.d("TAG","page->"+page);
+  @Override public void startLoadData(String channelId, String channelName,int page) {
     this.channelId=channelId;
     this.channelName=channelName;
-    mINewsListModel.requestNewsList(this, channelId, channelName, String.valueOf(maxResult), String.valueOf(page), "1", "0", "1",
+    mINewsListModel.requestNewsList(this, channelId, channelName, String.valueOf(maxResult),  "1", "1", "0", String.valueOf(page),
         ApiConfig.SHOWAPI_APPID, null, null, ApiConfig.SHOWAPI_SIGN);
   }
 
   @Override public void requestSuccess(NewsBean data) {
     KLog.d("TAG","requestSuccess->"+page);
-    if(null!=data){
-      //page++;
-      maxResult+=20;
-    }
+    //if(null!=data){
+    //  page++;
+    //}
     mView.updateNewsList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_SUCCESS);
   }
 

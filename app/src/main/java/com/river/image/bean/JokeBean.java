@@ -67,8 +67,6 @@ public class JokeBean implements Serializable{
       public int type;
       @JsonProperty("ct")
       public String ct;
-
-
     }
   }
 }

@@ -1,109 +1,94 @@
 package com.river.image.module.joke;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.AbsListView;
 import butterknife.BindView;
 import com.river.app.expandablelayout.library.ExpandableLayoutListView;
 import com.river.image.R;
 import com.river.image.base.BaseFragment;
 import com.river.image.bean.JokeBean;
-import com.river.image.common.DataType;
+import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
+import com.river.image.callback.OnLoadMoreListener;
 import com.river.image.http.ApiConfig;
 import com.river.image.module.joke.presenter.IJokeListPresenter;
 import com.river.image.module.joke.presenter.IJokeListPresenterImpl;
 import com.river.image.module.joke.view.IJokeListView;
+import com.socks.library.KLog;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/7.
  */
 
-public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implements IJokeListView {
+public class TextJokeFragment extends BaseFragment<IJokeListPresenter>
+    implements IJokeListView, OnLoadMoreListener {
   private String mType;
   private int mPosition;
   private static final String JOKE_TYPE = "joke_type";
   private static final String POSITION = "position";
   @BindView(R.id.listview) ExpandableLayoutListView listView;
-  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> mContentlist;
-  private JokeAdapter mJokeAdapter;
+  private List<ContentlistBean> mContentlist;
+  private TextJokesAdapter mJokeAdapter;
+  private int visibleLastIndex;
 
   @Override protected int getLayoutId() {
-    return  R.layout.fragment_text_joke;
+    return R.layout.fragment_text_joke;
   }
-
 
   @Override protected void initData() {
     mPresenter = new IJokeListPresenterImpl(this);
     mPresenter.startLoadData(ApiConfig.TEXT_JOKE);
+    initView();
   }
 
-  @Override public void updateJokeList(JokeBean jokeBean,String type) {
-    if(null!=jokeBean) {
-      mContentlist = jokeBean.showapi_res_body.contentlist;
-      mJokeAdapter = new JokeAdapter(getActivity(), R.layout.item_jokes_list, mContentlist);
-      listView.setAdapter(mJokeAdapter);
-
-    }
-    switch (type) {
-      case DataType.DATA_LOAD_SUCCESS:
-        mContentlist.addAll(jokeBean.showapi_res_body.contentlist);
-        mJokeAdapter.addAll(jokeBean.showapi_res_body.contentlist);
-        break;
-      case DataType.DATA_LOAD_FAIL:
-
-        break;
-      case DataType.DATA_REFRESH_SUCCESS:
-        mContentlist.clear();
-        mContentlist.addAll(jokeBean.showapi_res_body.contentlist);
-        mJokeAdapter.clear();
-        mJokeAdapter.addAll(jokeBean.showapi_res_body.contentlist);
-        break;
-      case DataType.DATA_REFRESH_FAIL:
-
-        break;
-    }
-  }
-
-  class JokeAdapter extends ArrayAdapter<JokeBean.ShowapiResBodyBean.ContentlistBean> {
-    private int resource;
-    LayoutInflater inflater;
-    public JokeAdapter(Context context, int resource, List<JokeBean.ShowapiResBodyBean.ContentlistBean> objects) {
-      super(context, resource, objects);
-      this.resource=resource;
-      inflater = LayoutInflater.from(context);
-    }
-
-    @NonNull @Override public View getView(int position, View convertView, ViewGroup parent) {
-      JokeBean.ShowapiResBodyBean.ContentlistBean jokeBean=getItem(position);
-      ViewHolder viewholder=null;
-      if(convertView==null){
-        viewholder=new  ViewHolder();
-        convertView=inflater.inflate(resource,null,true);
-        viewholder.tvHeader= (TextView) convertView.findViewById(R.id.header_text);
-        viewholder.tvTitle= (TextView) convertView.findViewById(R.id.tv_news_detail_title);
-        viewholder.tvFrom= (TextView) convertView.findViewById(R.id.tv_news_detail_from);
-        viewholder.tvBody= (TextView) convertView.findViewById(R.id.tv_news_detail_body);
-        convertView.setTag(viewholder);
-      }else{
-        viewholder= (ViewHolder) convertView.getTag();
+  private void initView() {
+    mContentlist = new ArrayList<>();
+    mJokeAdapter = new TextJokesAdapter(getActivity(), R.layout.item_jokes_list, mContentlist);
+    listView.setAdapter(mJokeAdapter);
+    listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+      @Override public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (scrollState == SCROLL_STATE_IDLE) {
+          KLog.d("TAG", "visibleLastIndex=" + visibleLastIndex);
+          KLog.d("TAG", "view.getLastVisiblePosition=" + view.getLastVisiblePosition());
+          KLog.d("TAG", "view.getCount()-1=" + (view.getCount() - 1));
+          if (visibleLastIndex == view.getCount() - 1) {
+            loadMore();
+          }
+        }
       }
 
-      viewholder.tvHeader.setText(jokeBean.title);
-      viewholder.tvTitle.setText(jokeBean.title);
-      viewholder.tvFrom.setText(jokeBean.ct);
-      String p_Str=jokeBean.text;
-      p_Str=p_Str.replace("<p>","");
-      p_Str=p_Str.replace("</p>","");
-      viewholder.tvBody.setText(p_Str);
-      return convertView;
+      @Override public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+          int totalItemCount) {
+        Integer position = -1;
+        visibleLastIndex = visibleItemCount + firstVisibleItem - 1;
+      }
+    });
+  }
+
+  @Override public void updateJokeList(JokeBean jokeBean, String type) {
+    if (null != jokeBean) {
+      mContentlist.addAll(jokeBean.showapi_res_body.contentlist);
     }
-    class ViewHolder{
-      TextView tvHeader,tvTitle,tvFrom,tvBody;
-    }
+    //switch (type) {
+    //  case DataType.DATA_LOAD_SUCCESS:
+    //     mContentlist.addAll(jokeBean.showapi_res_body.contentlist);
+    //   // mJokeAdapter.addAll(mContentlist);
+    //   // mJokeAdapter.addAll(jokeBean.showapi_res_body.contentlist);
+    //    break;
+    //  case DataType.DATA_LOAD_FAIL:
+    //
+    //    break;
+    //  case DataType.DATA_REFRESH_SUCCESS:
+    //   // mJokeAdapter.clear();
+    //    //mJokeAdapter.addAll(jokeBean.showapi_res_body.contentlist);
+    //    break;
+    //  case DataType.DATA_REFRESH_FAIL:
+    //    break;
+    //}
+  }
+
+  @Override public void loadMore() {
+    mPresenter.loadMoreData();
+    mJokeAdapter.notifyDataSetChanged();
   }
 }

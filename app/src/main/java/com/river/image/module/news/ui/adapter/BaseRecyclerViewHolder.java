@@ -39,7 +39,7 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
   public BaseRecyclerViewHolder(Context context, View itemView) {
     super(itemView);
     mContext = context;
-    mViews = new SparseArray<View>();
+    mViews = new SparseArray<>();
   }
 
   @SuppressWarnings("unchecked") private <T extends View> T findViewById(int viewId) {

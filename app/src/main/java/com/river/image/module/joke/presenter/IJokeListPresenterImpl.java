@@ -7,6 +7,7 @@ import com.river.image.http.ApiConfig;
 import com.river.image.module.joke.model.IJokeModel;
 import com.river.image.module.joke.model.IJokeModelImpl;
 import com.river.image.module.joke.view.IJokeListView;
+import com.socks.library.KLog;
 
 /**
  * Created by Administrator on 2016/11/28.
@@ -16,7 +17,7 @@ public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,Joke
     IJokeListPresenter {
   private IJokeModel mJokeModel =null;
   private int maxResult=20;
-  private int page;
+  private int page=1;
   private boolean isRefresh;
   private String dataType;
   public IJokeListPresenterImpl(IJokeListView jokeListView) {
@@ -37,14 +38,16 @@ public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,Joke
 
   @Override public void loadMoreData() {
     isRefresh=false;
+    page++;
     startLoadData(dataType);
   }
 
   @Override public void requestSuccess(JokeBean data) {
-    if(null!=data){
-      //maxResult+=20;
-      page++;
-    }
+    //if(null!=data){
+    //  //maxResult+=20;
+    //  page++;
+    //}
+    KLog.d("TAG","page-》"+page);
     mView.updateJokeList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_SUCCESS);
   }
 }

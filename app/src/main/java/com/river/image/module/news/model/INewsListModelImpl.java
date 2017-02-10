@@ -5,6 +5,7 @@ import com.river.image.callback.RequestCallBack;
 import com.river.image.http.HostType;
 import com.river.image.http.RetrofitManager;
 import com.socks.library.KLog;
+import java.util.List;
 import rx.Subscriber;
 import rx.Subscription;
 
@@ -13,6 +14,7 @@ import rx.Subscription;
  */
 
 public class INewsListModelImpl implements INewsListModel<NewsBean> {
+  List<NewsBean.ShowapiResBodyBean.PageBean.ContentBean> contentList;
   @Override public Subscription requestNewsList(final RequestCallBack<NewsBean> callBack, String channelId,
       String channelName, String maxResult, String needAllList, String needContent, String needHtml,
       String page, String appid, String timestamp, String title,String showapi_sign) {
@@ -28,6 +30,10 @@ public class INewsListModelImpl implements INewsListModel<NewsBean> {
         KLog.d("TAG",e.fillInStackTrace());
       }
       @Override public void onNext(NewsBean newsBean) {
+        contentList=newsBean.showapi_res_body.pagebean.contentlist;
+        for(NewsBean.ShowapiResBodyBean.PageBean.ContentBean contentlistBean:newsBean.showapi_res_body.pagebean.contentlist){
+          KLog.d("TAG","contentlistBeenList->"+contentlistBean.title);
+        }
         callBack.requestSuccess(newsBean);
       }
     });
