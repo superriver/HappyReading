@@ -18,16 +18,17 @@ public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,Joke
   private IJokeModel mJokeModel =null;
   private int maxResult=20;
   private int page=1;
-  private boolean isRefresh;
+  private boolean isRefresh=true;
   private String dataType;
-  public IJokeListPresenterImpl(IJokeListView jokeListView) {
+  public IJokeListPresenterImpl(IJokeListView jokeListView,String type) {
     super(jokeListView);
     mJokeModel=new IJokeModelImpl();
+    startLoadData(type);
   }
 
   @Override public void startLoadData(String type) {
     dataType=type;
-    mJokeModel.requestJokeList(this, dataType, String.valueOf(maxResult), String.valueOf(page), ApiConfig.SHOWAPI_APPID, null, ApiConfig.SHOWAPI_SIGN);
+    mSubscription=mJokeModel.requestJokeList(this, dataType, String.valueOf(maxResult), String.valueOf(page), ApiConfig.SHOWAPI_APPID, null, ApiConfig.SHOWAPI_SIGN);
   }
 
   @Override public void refreshData() {
@@ -37,17 +38,14 @@ public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,Joke
   }
 
   @Override public void loadMoreData() {
+    KLog.d("TAG","loadMoreData-》"+page);
     isRefresh=false;
     page++;
     startLoadData(dataType);
   }
 
   @Override public void requestSuccess(JokeBean data) {
-    //if(null!=data){
-    //  //maxResult+=20;
-    //  page++;
-    //}
     KLog.d("TAG","page-》"+page);
-    mView.updateJokeList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_SUCCESS);
+    mView.updateJokeList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
   }
 }

@@ -27,7 +27,7 @@ public class JokeActivity extends BaseActivity implements IJokeView{
   private static final String JOKE_TYPE = "joke_type";
   private static final String POSITION = "position";
 
-  private String[] tabTitle = new String[] { "文本笑话", "图片笑话", "动态图片" };
+  private String[] tabTitle ={ "文本笑话", "图片笑话", "动态图片" };
   @BindView(R.id.all_viewpager)  ViewPager mViewPager;
   @BindView(R.id.tabs) TabLayout mTabLayout;
   @BindView(R.id.toolbar) Toolbar mToolbar;
@@ -47,10 +47,11 @@ public class JokeActivity extends BaseActivity implements IJokeView{
 
   @Override public void initViewPager() {
      TextJokeFragment mTextJokeFragment;
-     ImagesJokeFragment mImageJokeFragment, mDynamicJokeFragment;
+    ImagesJokeFragment mImageJokeFragment, mDynamicJokeFragment;
     setSupportActionBar(mToolbar);
     setTitle(getIntent().getStringExtra("title"));
     List<BaseFragment> fragments = new ArrayList<>();
+
     mTextJokeFragment = new TextJokeFragment();
 
     mImageJokeFragment = new ImagesJokeFragment();
@@ -62,19 +63,22 @@ public class JokeActivity extends BaseActivity implements IJokeView{
     Bundle dynamicBundle = new Bundle();
     dynamicBundle.putString(JOKE_TYPE, ApiConfig.DYNAMIC_JOKE);
     mDynamicJokeFragment.setArguments(dynamicBundle);
+
     fragments.add(mTextJokeFragment);
     fragments.add(mImageJokeFragment);
     fragments.add(mDynamicJokeFragment);
     // 初始化ViewPager
-    BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), fragments);
+    BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), fragments,tabTitle);
     mViewPager.setAdapter(adapter);
+
     mTabLayout.addTab(mTabLayout.newTab().setText(tabTitle[0]));
     mTabLayout.addTab(mTabLayout.newTab().setText(tabTitle[1]));
     mTabLayout.addTab(mTabLayout.newTab().setText(tabTitle[2]));
+
     mTabLayout.setupWithViewPager(mViewPager);
-    mTabLayout.getTabAt(0).setText(tabTitle[0]);
-    mTabLayout.getTabAt(1).setText(tabTitle[1]);
-    mTabLayout.getTabAt(2).setText(tabTitle[2]);
+    //mTabLayout.getTabAt(0).setText(tabTitle[0]);
+    //mTabLayout.getTabAt(1).setText(tabTitle[1]);
+    //mTabLayout.getTabAt(2).setText(tabTitle[2]);
     //setOnTabSelectEvent(viewPager,tabLayout);
     // mViewPager.setAdapter(mExamplePagerAdapter);
   }

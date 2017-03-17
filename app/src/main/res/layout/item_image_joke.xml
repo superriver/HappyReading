@@ -8,7 +8,14 @@
     android:paddingRight="3dp"
     android:layout_marginTop="10dp"
     android:orientation="vertical">
-  <pl.droidsonroids.gif.GifImageView
+  <!--<pl.droidsonroids.gif.GifImageView-->
+      <!--android:id="@+id/dongtai"-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:adjustViewBounds="true"-->
+      <!--android:minHeight="150dp"-->
+      <!--android:scaleType="fitCenter"/>-->
+  <ImageView
       android:id="@+id/dongtai"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

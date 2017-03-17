@@ -21,12 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ***********************************************************************************/
-package com.river.app.expandablelayout.library;
+package com.river.image.widget.expandablelayout;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListView;
+import com.river.image.callback.OnLoadMoreListener;
 
 /**
  * Author :    Chutaux Robin
@@ -34,6 +35,7 @@ import android.widget.ListView;
  */
 public class ExpandableLayoutListView extends ListView
 {
+    private OnLoadMoreListener mOnLoadMoreListener;
     private Integer position = -1;
     public ExpandableLayoutListView(Context context)
     {
@@ -44,6 +46,7 @@ public class ExpandableLayoutListView extends ListView
     public ExpandableLayoutListView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
+       // setOnScrollListener(new OnExpandableLayoutScrollListener());
     }
 
     public ExpandableLayoutListView(Context context, AttributeSet attrs, int defStyle)
@@ -60,12 +63,14 @@ public class ExpandableLayoutListView extends ListView
         {
             if (index != (position - getFirstVisiblePosition()))
             {
-                ExpandableLayoutItem currentExpandableLayout = (ExpandableLayoutItem) getChildAt(index).findViewWithTag(ExpandableLayoutItem.class.getName());
+                ExpandableLayoutItem
+                    currentExpandableLayout = (ExpandableLayoutItem) getChildAt(index).findViewWithTag(ExpandableLayoutItem.class.getName());
                 currentExpandableLayout.hide();
             }
         }
 
-        ExpandableLayoutItem expandableLayout = (ExpandableLayoutItem) getChildAt(position - getFirstVisiblePosition()).findViewWithTag(ExpandableLayoutItem.class.getName());
+        ExpandableLayoutItem
+            expandableLayout = (ExpandableLayoutItem) getChildAt(position - getFirstVisiblePosition()).findViewWithTag(ExpandableLayoutItem.class.getName());
 
         if (expandableLayout.isOpened())
             expandableLayout.hide();
@@ -76,6 +81,11 @@ public class ExpandableLayoutListView extends ListView
         return super.performItemClick(view, position, id);
     }
 
+    //public void setOnLoadMoreListener( OnLoadMoreListener mOnLoadMoreListener){
+    //    this.mOnLoadMoreListener = mOnLoadMoreListener;
+    //}
+    //
+    //
     //@Override
     //public void setOnScrollListener(OnScrollListener l)
     //{
@@ -88,16 +98,25 @@ public class ExpandableLayoutListView extends ListView
     //public class OnExpandableLayoutScrollListener implements OnScrollListener
     //{
     //    private int scrollState = 0;
+    //    private int visibleLastIndex;
     //
     //    @Override
     //    public void onScrollStateChanged(AbsListView view, int scrollState)
     //    {
     //        this.scrollState = scrollState;
+    //
+    //        if (scrollState == SCROLL_STATE_IDLE) {
+    //            if (visibleLastIndex == view.getCount() - 1) {
+    //                KLog.d("TAG","visibleLastIndex-->");
+    //                mOnLoadMoreListener.loadMore();
+    //            }
+    //        }
     //    }
     //
     //    @Override
     //    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
     //    {
+    //        visibleLastIndex = visibleItemCount + firstVisibleItem - 1;
     //        if (scrollState != SCROLL_STATE_IDLE)
     //        {
     //            for (int index = 0; index < getChildCount(); ++index)

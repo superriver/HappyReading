@@ -43,8 +43,6 @@ public class NewsDetailActivity extends BaseActivity {
     Bundle bundle = getIntent().getExtras();
     mContentBean=
         (ContentBean) bundle.getSerializable("news_content");
-    //mContentBean = (NewsBean.ShowapiResBodyBean.PageBean.ContentBean) intent.getSerializableExtra(
-    //    "news_content");
     if (mContentBean != null) {
       if (!TextUtils.isEmpty(mContentBean.content)) {
         mRichText.setText(mContentBean.content);

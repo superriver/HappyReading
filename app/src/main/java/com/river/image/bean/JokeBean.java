@@ -2,14 +2,13 @@ package com.river.image.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/11/24.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JokeBean implements Serializable{
+public class JokeBean{
 
   /**
    * showapi_res_code : 0
@@ -24,7 +23,7 @@ public class JokeBean implements Serializable{
   public ShowapiResBodyBean showapi_res_body;
 
   @JsonIgnoreProperties(ignoreUnknown = true)
-  public static class ShowapiResBodyBean implements Serializable{
+  public static class ShowapiResBodyBean{
     /**
      * allPages : 1133
      * ret_code : 0
@@ -47,7 +46,7 @@ public class JokeBean implements Serializable{
     @JsonProperty("contentlist")
     public List<ContentlistBean> contentlist;
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class ContentlistBean implements Serializable{
+    public static class ContentlistBean{
       /**
        * id : 5836a6156e364a2b64848e7d
        * title : 好了，今天是感恩节，

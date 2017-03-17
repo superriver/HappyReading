@@ -17,6 +17,7 @@ import com.river.image.base.BaseFragment;
 import com.river.image.bean.NewsBean;
 import com.river.image.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;
 import com.river.image.callback.OnItemClickAdapter;
+import com.river.image.callback.OnLoadMoreListener;
 import com.river.image.common.DataType;
 import com.river.image.module.news.presenter.INewsListPresenter;
 import com.river.image.module.news.presenter.INewsListPresenterImpl;
@@ -78,11 +79,11 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
       initNewsList(contentList);
     }
     switch (type) {
-      case DataType.DATA_LOAD_SUCCESS:
+      case DataType.DATA_LOAD_MORE_SUCCESS:
         mBaseRecyclerAdapter.loadMoreSuccess();
         mBaseRecyclerAdapter.addMoreData(contentList);
         break;
-      case DataType.DATA_LOAD_FAIL:
+      case DataType.DATA_LOAD_MORE_FAIL:
 
         break;
       case DataType.DATA_REFRESH_SUCCESS:
@@ -128,6 +129,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
 
     mEasyRecyclerView.addItemDecoration(itemDecoration);
     mEasyRecyclerView.setAdapter(mBaseRecyclerAdapter);
+
     mBaseRecyclerAdapter.setOnItemClickListener(new OnItemClickAdapter() {
       @Override public void onItemClick(View view, int position) {
         // 跳转到新闻详情
@@ -143,7 +145,14 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
     mEasyRecyclerView.setRefreshListener(() -> mEasyRecyclerView.postDelayed(() -> {
       mPresenter.refreshData();
     }, 1000));
-    mBaseRecyclerAdapter.setOnLoadMoreListener(10, () -> mPresenter.loadMoreData());
+
+    mBaseRecyclerAdapter.setOnLoadMoreListener(10, new OnLoadMoreListener() {
+      @Override public void loadMore() {
+        mPresenter.loadMoreData();
+      }
+
+  });
+
   }
 
   //

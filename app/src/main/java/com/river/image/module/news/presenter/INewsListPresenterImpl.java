@@ -43,16 +43,13 @@ public class INewsListPresenterImpl extends BasePresenterImpl<INewsListView, New
   @Override public void startLoadData(String channelId, String channelName,int page) {
     this.channelId=channelId;
     this.channelName=channelName;
-    mINewsListModel.requestNewsList(this, channelId, channelName, String.valueOf(maxResult),  "1", "1", "0", String.valueOf(page),
+    mSubscription = mINewsListModel.requestNewsList(this, channelId, channelName, String.valueOf(maxResult),  "1", "1", "0", String.valueOf(page),
         ApiConfig.SHOWAPI_APPID, null, null, ApiConfig.SHOWAPI_SIGN);
   }
 
   @Override public void requestSuccess(NewsBean data) {
     KLog.d("TAG","requestSuccess->"+page);
-    //if(null!=data){
-    //  page++;
-    //}
-    mView.updateNewsList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_SUCCESS);
+    mView.updateNewsList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
   }
 
   @Override public void requestError(String msg) {

@@ -21,6 +21,11 @@ public class INewsChannelPresenterImpl extends BasePresenterImpl<INewsChannelVie
   public INewsChannelPresenterImpl(INewsChannelView view) {
     super(view);
     mINewsChannelModel = new INewsChannelModelImpl();
+    //try{
+    //
+    //}catch (IOException io){
+    //  io.printStackTrace();
+    //}
     NewsChannelDB newsChannelDB = new NewsChannelDB();
     List<NewsChannelBean> channel =  newsChannelDB.selectDB();
     if(channel.size()==0){

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.river.image.module.news.ui.NewsDetailActivity"
+
     >
   <TextView
       android:id="@+id/tv_news_detail_title"
@@ -13,6 +14,7 @@
       android:layout_centerHorizontal="true"
       android:layout_margin="8dp"
       android:textColor="?android:textColorPrimary"
+      android:textSize="20sp"
       tools:text="云南投毒案女子首照全家福"
       />
 
@@ -26,6 +28,7 @@
       android:textColor="?android:textColorPrimary"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       tools:text="@string/from"
+      android:textSize="20sp"
       />
 
   <zhou.widget.RichText
@@ -37,7 +40,7 @@
       android:paddingLeft="8dp"
       android:paddingRight="8dp"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      android:textSize="16sp"
+      android:textSize="20sp"
       android:textColor="?android:textColorPrimary"
       tools:text="天气"
       />

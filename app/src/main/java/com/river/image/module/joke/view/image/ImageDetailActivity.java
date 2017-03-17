@@ -1,6 +1,5 @@
 package com.river.image.module.joke.view.image;
 
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -10,10 +9,10 @@ import com.river.image.R;
 import com.river.image.annotation.ActivityFragmentInject;
 import com.river.image.base.BaseActivity;
 import com.river.image.base.BaseFragment;
-import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
-import java.util.ArrayList;
-import java.util.List;
+import com.river.image.bean.MessageEvent;
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by Administrator on 2016/9/22.
@@ -21,45 +20,28 @@ import org.greenrobot.eventbus.EventBus;
 @ActivityFragmentInject(contentViewId = R.layout.image_girl_detail) public class ImageDetailActivity
     extends BaseActivity {
  ImageDetailFragment mGirlFragment;
-  List<ContentlistBean> datas;
   @BindView(R.id.toolbar) Toolbar mToolbar;
 
   @Override protected int getFragmentContentId() {
     return R.id.girl_fragment;
   }
 
-
-  protected BaseFragment getFirstFragment() {
-    Bundle  bundle = getIntent().getExtras();
-    ArrayList<ContentlistBean> mImageList=
-         (ArrayList<ContentlistBean>) bundle.getSerializable("image");
-    mGirlFragment =  ImageDetailFragment.getInstance(mImageList,
-        getIntent().getIntExtra("current", 0));
-    return mGirlFragment;
-  }
   @Override protected void initView() {
-    //EventBus.getDefault().register(ImageDetailActivity.this);
+    EventBus.getDefault().register(ImageDetailActivity.this);
     mToolbar.setTitle("福利");
     setSupportActionBar(mToolbar);
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+  public void onMessageEvent(MessageEvent event){
+    mGirlFragment = new ImageDetailFragment(event);
     if (null == getSupportFragmentManager().getFragments()) {
-      BaseFragment firstFragment = getFirstFragment();
+      BaseFragment firstFragment = mGirlFragment;
       if (null != firstFragment) {
         addFragment(firstFragment);
       }
     }
   }
-
-  //@Subscribe(threadMode = ThreadMode.MAIN)
-  //public void onMessageEvent(MessageEvent event){
-  //  Log.d("TAG","onEventMainThread--》"+event.getData().size());
-  //  mGirlFragment = ImageDetailFragment.getInstance(event);
-  //  if (null == getSupportFragmentManager().getFragments()) {
-  //    BaseFragment firstFragment = mGirlFragment;
-  //    if (null != firstFragment) {
-  //      addFragment(firstFragment);
-  //    }
-  //  }
-  //}
 
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

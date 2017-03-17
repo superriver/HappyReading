@@ -1,20 +1,20 @@
 package com.river.image.module.joke;
 
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.river.image.R;
 import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
-import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Administrator on 2016/9/14.
  */
 public class ImagesJokesHolder extends BaseViewHolder<ContentlistBean> {
-  private GifImageView mImageView;
+  private ImageView mImageView;
   private TextView mTextView;
-
   public ImagesJokesHolder(ViewGroup parent) {
     super(parent, R.layout.item_image_joke);
     mImageView = $(R.id.dongtai);
@@ -27,8 +27,10 @@ public class ImagesJokesHolder extends BaseViewHolder<ContentlistBean> {
       Glide.with(getContext())
           .load(data.img)
           .placeholder(R.mipmap.ic_launcher)
-          .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+          .diskCacheStrategy(DiskCacheStrategy.RESULT)
           .into(mImageView);
+      //GifDrawable gifDrawable = new GifDrawable();
+      //GifDrawable gifDrawable = new GifDrawable();
       mTextView.setText(data.title);
     }
 

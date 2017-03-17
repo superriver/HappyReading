@@ -51,7 +51,7 @@ public class HomeActivity
   //
   //   //Subscription sb= RxView.clicks(mFab).subscribe(new Action1<Void>() {
   //   //  @Override public void call(Void aVoid) {
-  //   //    KLog.d("TAG","Rx");
+  //   //    KLog.d("TAG","Rx ");
   //   //  }
   //   //});
   ////   Pair<String,Integer> stringIntegerPair;

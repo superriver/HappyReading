@@ -8,4 +8,4 @@
     android:background="?attr/colorPrimary"
     app:layout_scrollFlags="scroll|enterAlways"
     app:popupTheme="@style/AppTheme.PopupOverlay"
-    app:theme="@style/AppTheme.AppBarOverlay"/>
+    app:theme="?attr/toolbarTheme"/>

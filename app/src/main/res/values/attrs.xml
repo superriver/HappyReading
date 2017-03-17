@@ -6,7 +6,30 @@
   <!-- 导航的文字颜色-->
   <attr name="navColor" format="reference|color"/>
 
+  <!---->
+  <attr name="toolbarTheme" format="reference"/>
+
   <declare-styleable name="PacManRefreshHead">
     <attr name="pacIconColor" format="color|reference"/>
+  </declare-styleable>
+
+  <declare-styleable name="ExpandableLayout">
+    <attr name="el_headerLayout" format="reference"/>
+    <attr name="el_contentLayout" format="reference" />
+    <attr name="el_duration" format="integer" />
+    <attr name="android:textSize"/>
+  </declare-styleable>
+
+  <declare-styleable name="CardStackView">
+    <attr name="stackOverlapGaps" format="dimension"/>
+    <attr name="stackOverlapGapsCollapse" format="dimension"/>
+    <attr name="stackHeaderHeight" format="dimension"/>
+    <attr name="stackDuration" format="integer"/>
+    <attr name="stackNumBottomShow" format="integer"/>
+    <attr name="stackAnimationType">
+      <flag name="allDown" value="0" />
+      <flag name="upDown" value="1" />
+      <flag name="upDownStack" value="2" />
+    </attr>
   </declare-styleable>
 </resources>

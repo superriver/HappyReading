@@ -1,4 +1,4 @@
-package com.river.image.module.joke.view.image;
+package com.river.image.bean;
 
 import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
 import java.util.List;

@@ -13,11 +13,12 @@ import java.util.List;
 public class BaseFragmentAdapter extends FragmentPagerAdapter{
   private FragmentManager mFragmentManager;
   private List<BaseFragment> mFragments;
-  private List<String> mTitles;
-  public BaseFragmentAdapter(FragmentManager fm, List<BaseFragment> fragments) {
+  private String[] mTitles;
+  public BaseFragmentAdapter(FragmentManager fm, List<BaseFragment> fragments,String[] titles) {
     super(fm);
     mFragmentManager = fm;
     mFragments = fragments;
+    mTitles=titles;
   }
   public void updateFragments(List<BaseFragment> fragments, List<String> titles) {
     for (int i = 0; i < mFragments.size(); i++) {
@@ -35,7 +36,7 @@ public class BaseFragmentAdapter extends FragmentPagerAdapter{
         mFragments.add(fragments.get(i));
       }
     }
-    this.mTitles = titles;
+    //this.mTitles = titles;
     notifyDataSetChanged();
   }
   /**
@@ -50,5 +51,12 @@ public class BaseFragmentAdapter extends FragmentPagerAdapter{
    */
   @Override public int getCount() {
     return mFragments.size();
+  }
+
+  //此方法用来显示tab上的名字
+  @Override
+  public CharSequence getPageTitle(int position) {
+
+    return mTitles[(position % mTitles.length)];
   }
 }

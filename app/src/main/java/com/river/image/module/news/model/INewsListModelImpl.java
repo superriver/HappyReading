@@ -31,9 +31,6 @@ public class INewsListModelImpl implements INewsListModel<NewsBean> {
       }
       @Override public void onNext(NewsBean newsBean) {
         contentList=newsBean.showapi_res_body.pagebean.contentlist;
-        for(NewsBean.ShowapiResBodyBean.PageBean.ContentBean contentlistBean:newsBean.showapi_res_body.pagebean.contentlist){
-          KLog.d("TAG","contentlistBeenList->"+contentlistBean.title);
-        }
         callBack.requestSuccess(newsBean);
       }
     });

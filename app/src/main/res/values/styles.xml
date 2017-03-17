@@ -2,10 +2,11 @@
 
   <!-- Base application theme. -->
   <!--日间主题-->
-  <style name="AppTheme"
+  <style name="BaseAppTheme"
       parent="Theme.AppCompat.Light.NoActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
+
+    <item name="android:windowNoTitle">true</item>
+    <item name="colorPrimary">@color/material_green_500</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
     <item name="android:itemBackground">@color/item_color</item>
@@ -14,21 +15,32 @@
     <!-- 自定义属性-->
     <item name="backgroundColor">@color/background_color</item>
     <item name="navColor" >@color/selector_nav</item>
+    <item name="toolbarTheme">@style/ToolbarTheme</item>
+
+    <item name="windowActionModeOverlay">true</item>
   </style>
 
-  <style name="AppTheme.NoActionBar">
+  <style name="BaseAppTheme.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
   <!--全屏-->
-  <style name="AppTheme.Splash"
+  <style name="BaseAppTheme.Splash"
       parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowFullscreen">true</item>
   </style>
 
-  <style name="AppTheme.LauncherAppTheme">
-    <!--<item name="android:windowAnimationStyle">@style/noAnimation</item>-->
+  <style name="BaseAppTheme.AppTheme">
+    <!-- <item name="android:windowAnimationStyle">@style/noAnimation</item>-->
+  </style>
+  <style name="BaseAppTheme.LauncherAppTheme">
+    <!--<item name="android:wsindowAnimationStyle">@style/noAnimation</item>-->
     <item name="android:windowFullscreen">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:windowTranslucentStatus">true</item>
+      <!--<item name="android:windowAnimationStyle">@style/noAnimation</item>-->
+    <item name="android:windowTranslucentNavigation">true</item>
   </style>
 
   <style name="AppTheme.AppBarOverlay"
@@ -45,5 +57,12 @@
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:drawablePadding">10dp</item>
+  </style>
+
+  <!-- ToolBar菜单样式 -->
+  <style name="ToolbarTheme" parent="@style/Widget.AppCompat.Light.ActionBar">
+    <item name="actionMenuTextColor">@color/material_white</item>
+    <item name="android:textColorPrimary">@color/material_white</item>
+    <item name="android:textColorSecondary">@color/material_white</item>
   </style>
 </resources>

@@ -1,65 +1,47 @@
 package com.river.image.module.joke.view.image;
 
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import butterknife.BindView;
 import com.river.image.Constants;
 import com.river.image.R;
 import com.river.image.base.BaseFragment;
-import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
+import com.river.image.bean.MessageEvent;
 import com.river.image.utils.BitmapUtil;
 import com.river.image.widget.PinchImageView;
-import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2016/9/22.
  */
 
-public class ImageDetailFragment extends BaseFragment  implements ViewPager.OnPageChangeListener{
+public class ImageDetailFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
   //private Observable<List<ContentlistBean>> mImageJokeObservable;
   private ImageDetailAdapter mAdapter;
 
-  private int current;
-  private ArrayList<ContentlistBean> datas;
   @BindView(R.id.viewpager) ViewPager mViewPager;
-
-  public static ImageDetailFragment getInstance(ArrayList<ContentlistBean> datas,int currentIndex){
-    Bundle bundle = new Bundle();
-    ImageDetailFragment imageDetailFragment = new ImageDetailFragment();
-    bundle.putSerializable("image",datas);
-    bundle.putInt("current",currentIndex);
-    imageDetailFragment.setArguments(bundle);
-    return imageDetailFragment;
+  private MessageEvent event;
+  public ImageDetailFragment(MessageEvent event) {
+    this.event = event;
   }
+
+
   @Override protected void initData() {
-    //mImageJokeObservable = RxBus.get().register("imageJoke",null);
-    //mImageJokeObservable.subscribe(contentlistBeen -> {
-    //  datas=contentlistBeen;
-    //  KLog.d("TAG","datas-->"+datas.size());
-    //
-    //});
-   // Log.d("TAG","initData--》"+datas.getData().size());
-    Bundle bundle = getArguments();
-    if(null!=bundle){
-      datas= (ArrayList<ContentlistBean>) bundle.getSerializable("image");
-      current = bundle.getInt("current");
-    }
-    mAdapter = new ImageDetailAdapter(mActivity,datas);
+    mAdapter = new ImageDetailAdapter(mActivity, event.getData());
     mViewPager.setAdapter(mAdapter);
-    mViewPager.setCurrentItem(current);
+    mViewPager.setCurrentItem(event.getPosition());
     mViewPager.addOnPageChangeListener(this);
-
   }
-  public void onSave(){
-    String imgUrl=datas.get(current).img;
+
+  public void onSave() {
+    String imgUrl = event.getData().get(event.getPosition()).img;
     PinchImageView imageView = getCurrentImageView();
     Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
-    boolean isSuccess=BitmapUtil.saveBitmap(bitmap,
-        Constants.SAVE_DIR,imgUrl.substring(imgUrl.lastIndexOf("/")+1,imgUrl.length()),true);
-    if(isSuccess){
+    boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.SAVE_DIR,
+        imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true);
+    if (isSuccess) {
       //Snackbar.make(mRootView,"下载完成，请主人验收",Snackbar.LENGTH_LONG).show();
-    }else{
+    } else {
       //Snackbar.make(mRootView,"下载失败，请重新下载",Snackbar.LENGTH_LONG).show();
     }
   }
@@ -106,9 +88,8 @@ public class ImageDetailFragment extends BaseFragment  implements ViewPager.OnPa
     return R.layout.fragment_gril;
   }
 
-
-  @Override public void onPageScrolled(int position, float positionOffset,
-      int positionOffsetPixels) {
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
   }
 
@@ -119,5 +100,4 @@ public class ImageDetailFragment extends BaseFragment  implements ViewPager.OnPa
   @Override public void onPageScrollStateChanged(int state) {
 
   }
-
 }

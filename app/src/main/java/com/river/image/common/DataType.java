@@ -5,9 +5,9 @@ package com.river.image.common;
  */
 
 public class DataType {
-  public static final String DATA_LOAD_SUCCESS="DATA_LOAD_SUCCESS";
+  public static final String DATA_LOAD_MORE_SUCCESS="DATA_LOAD_SUCCESS";
 
-  public static final String DATA_LOAD_FAIL="DATA_LOAD_FAIL";
+  public static final String DATA_LOAD_MORE_FAIL="DATA_LOAD_FAIL";
 
   public static final String DATA_REFRESH_SUCCESS="DATA_REFRESH_SUCCESS";
 
