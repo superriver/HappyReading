@@ -26,8 +26,10 @@ public class ImagesJokesHolder extends BaseViewHolder<ContentlistBean> {
     if(null!=data){
       Glide.with(getContext())
           .load(data.img)
+          .asGif()
           .placeholder(R.mipmap.ic_launcher)
           .diskCacheStrategy(DiskCacheStrategy.RESULT)
+          .override(100,100)
           .into(mImageView);
       //GifDrawable gifDrawable = new GifDrawable();
       //GifDrawable gifDrawable = new GifDrawable();

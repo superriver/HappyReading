@@ -34,7 +34,6 @@ public class BaseRecyclerViewHolder extends BaseViewHolder<NewsBean.ShowapiResBo
       Glide.with(getContext()).load(data.imageurls.get(0).url).placeholder(R.drawable.ic_loading).error(R.drawable.ic_fail).diskCacheStrategy(
           DiskCacheStrategy.SOURCE).into(mImageView);
     }
-
     mNewsTitle.setText(data.title);
     mNewsDigest.setText(data.desc);
     mNewsTime.setText(data.pubDate);

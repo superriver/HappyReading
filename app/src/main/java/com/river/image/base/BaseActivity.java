@@ -15,19 +15,23 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.github.mzule.fantasyslide.SideBar;
 import com.github.mzule.fantasyslide.SimpleFantasyListener;
+import com.jakewharton.rxbinding.view.RxView;
 import com.river.image.R;
 import com.river.image.annotation.ActivityFragmentInject;
 import com.river.image.module.joke.JokeActivity;
 import com.river.image.module.news.ui.NewsActivity;
 import com.river.image.module.picture.view.home.HomeActivity;
 import com.river.image.utils.ActivityManager;
-import org.greenrobot.eventbus.EventBus;
+import com.river.image.utils.NetUtil;
+import com.socks.library.KLog;
+import rx.functions.Action1;
 
 /**
  * Created by Administrator on 2016/9/12.
@@ -52,28 +56,62 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
   protected T mPresenter;
   // 跳转的类
   protected Class mClass;
-
+boolean isConnected;
+  protected Button mButton,mButtonShow;
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    // requestWindowFeature(Window.FEATURE_NO_TITLE);
     //指定的注解类是否存在
-    if (getClass().isAnnotationPresent(ActivityFragmentInject.class)) {
-      ActivityFragmentInject annotation = getClass().getAnnotation(ActivityFragmentInject.class);
-      contentViewId = annotation.contentViewId();
-      mToolbarTitle = annotation.toolbarTitle();
-      hasNavigationView = annotation.hasNavigationView();
+    if (NetUtil.isConnected(this)) {
+      if (getClass().isAnnotationPresent(ActivityFragmentInject.class)) {
+        ActivityFragmentInject annotation = getClass().getAnnotation(ActivityFragmentInject.class);
+        contentViewId = annotation.contentViewId();
+        mToolbarTitle = annotation.toolbarTitle();
+        hasNavigationView = annotation.hasNavigationView();
+        KLog.d("BaseActivity", "isConnected");
+        setContentView(contentViewId);
+        mUnbinder = ButterKnife.bind(this);
+        // ActivityManager.getInstance().addActivity(this);
+        //避免重复添加Fragment
+        initView();
+        initToolBar();
+        if (hasNavigationView) {
+          initDrawLayout();
+        }
+      }
+    }else {
+      setContentView(R.layout.network_failed);
+      mButton= (Button) findViewById(R.id.btn_open_net);
+     // mButtonShow= (Button) findViewById(R.id.btn_show);
+      mButton.setVisibility(View.VISIBLE);
+      mButtonShow.setVisibility(View.GONE);
+      RxView.clicks(mButton).subscribe(new Action1<Void>() {
+        @Override public void call(Void aVoid) {
+          NetUtil.openSetting(BaseActivity.this);
+        }
+      });
     }
-    setContentView(contentViewId);
 
-    mUnbinder = ButterKnife.bind(this);
-    // ActivityManager.getInstance().addActivity(this);
-    //避免重复添加Fragment
+  }
 
-    initView();
-    initToolBar();
-    if (hasNavigationView) {
-      initDrawLayout();
-    }
+  @Override protected void onRestart() {
+    super.onRestart();
+    //if(NetUtil.isConnected(BaseActivity.this)){
+    //  mButton.setVisibility(View.GONE);
+    //  mButtonShow.setVisibility(View.VISIBLE);
+    //  RxView.clicks(mButtonShow).subscribe(new Action1<Void>() {
+    //    @Override public void call(Void aVoid) {
+    //      finish();
+    //    }
+    //  });
+    //}else {
+    //
+    //}
+
+  }
+  @Override protected void onResume() {
+    super.onResume();
+    KLog.d("BaseActivity","onResume");
+
   }
 
   //添加fragment
@@ -179,12 +217,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
   }
 
   @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
-    //if (event.getAction() == keyCode) {
-    //  if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
-    //    finish();
-    //    return true;
-    //  }
-    //}
+    KLog.d("onKeyDown","onKeyDown");
+    if (event.getAction() == keyCode) {
+      if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+        finish();
+        return true;
+      }
+    }
     if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
       if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -194,9 +233,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
   }
 
   @Override public void onBackPressed() {
+
     if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
       super.onBackPressed();
+      KLog.d("TAG","onBackPressed");
     }else {
+      KLog.d("TAG","finish");
       finish();
       overridePendingTransition(0,0);
     }
@@ -206,7 +248,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
   @Override protected void onDestroy() {
     super.onDestroy();
     ActivityManager.getInstance().finishActivity(this);
-    mUnbinder.unbind();
-
+    if(null!=mUnbinder){
+      mUnbinder.unbind();
+    }
   }
 }

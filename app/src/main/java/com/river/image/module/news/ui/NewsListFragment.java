@@ -38,8 +38,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
   protected String mNewsChannelId;
   protected String mNewsChannelName;
   @BindView(R.id.news_recycler_view) EasyRecyclerView mEasyRecyclerView;
-  List<ContentBean> contentList;
-  //private BaseRecyclerAdapter mBaseRecyclerAdapter;
+  protected List<ContentBean> contentList;
   private BaseRecyclerAdapter<ContentBean> mBaseRecyclerAdapter;
 
   @Override protected int getLayoutId() {

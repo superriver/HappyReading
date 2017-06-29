@@ -7,7 +7,6 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import java.io.Closeable;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,14 +23,12 @@ public class NewsChannelDB implements Closeable{
   public static void insertDB(final NewsChannel newsChannel){
     mRealm.executeTransaction(new Realm.Transaction() {
       @Override public void execute(Realm realm) {
-        ArrayList<NewsChannelBean> channelList=new ArrayList<>();
        NewsChannel.NewsChannelBody.ChannelListBean[] channelLists =
             newsChannel.res_body.channelList;
         for (NewsChannel.NewsChannelBody.ChannelListBean channelListBean : channelLists) {
           NewsChannelBean newsChannelBean = mRealm.createObject(NewsChannelBean.class);
           newsChannelBean.setChannelId(channelListBean.channelId);
           newsChannelBean.setName(channelListBean.name);
-          channelList.add(newsChannelBean);
         }
       }
     });
