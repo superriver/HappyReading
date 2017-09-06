@@ -54,9 +54,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
   protected abstract void initData();
   protected abstract int getLayoutId();
-
-  @Override public void onDestroy() {
-    super.onDestroy();
-    unbinder.unbind();
-  }
+  //
+  //@Override public void onDestroy() {
+  //  super.onDestroy();
+  //  unbinder.unbind();
+  //}
 }

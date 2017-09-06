@@ -47,6 +47,7 @@ import com.river.image.base.BaseFragment;
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
     int id = item.getItemId();
     if (id == R.id.action_save) {
       //调用保存的方法

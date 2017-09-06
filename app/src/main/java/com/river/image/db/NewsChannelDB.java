@@ -1,6 +1,6 @@
 package com.river.image.db;
 
-import com.river.image.MyApplication;
+import com.river.image.common.MyApplication;
 import com.river.image.bean.NewsChannel;
 import com.river.image.bean.NewsChannelBean;
 import io.realm.Realm;

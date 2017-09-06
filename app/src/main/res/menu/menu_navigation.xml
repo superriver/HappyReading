@@ -18,10 +18,10 @@
             android:icon="@drawable/ic_insert_photo_black"
             android:title="@string/joke"/>
 
-        <item
-            android:id="@+id/action_settings"
-            android:icon="@drawable/ic_more_black"
-            android:title="@string/settings"/>
+        <!--<item-->
+            <!--android:id="@+id/action_settings"-->
+            <!--android:icon="@drawable/ic_more_black"-->
+            <!--android:title="@string/settings"/>-->
 
     </group>
 

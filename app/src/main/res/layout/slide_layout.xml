@@ -52,21 +52,12 @@
         />
 
     <TextView
-        android:id="@+id/action_jokes"
-        style="@style/MenuText"
+       android:id="@+id/action_jokes"
+         style="@style/MenuText"
         android:drawableLeft="@drawable/coupon"
         android:text="@string/joke"
         />
 
-    <TextView
-        style="@style/MenuText"
-        android:drawableLeft="@drawable/friends"
-        android:text="@string/settings"
-        />
 
-    <TextView
-        style="@style/MenuText"
-        android:drawableLeft="@drawable/settings"
-        android:text="设置"
-        />
+
   </com.github.mzule.fantasyslide.SideBar>

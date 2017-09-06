@@ -7,7 +7,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
-import com.river.image.MyApplication;
+import com.river.image.common.MyApplication;
 import com.socks.library.KLog;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,7 +22,6 @@ public class BitmapUtil {
 
     int width = drawable.getIntrinsicWidth();
     int height = drawable.getIntrinsicHeight();
-    KLog.a("TAG",width+"-->"+height);
     Bitmap mBitmap = Bitmap.createBitmap(width,height,
         drawable.getOpacity()!= PixelFormat.OPAQUE?Bitmap.Config.ARGB_8888: Bitmap.Config.RGB_565);
     Canvas canvas = new Canvas(mBitmap);

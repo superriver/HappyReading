@@ -1,6 +1,6 @@
 package com.river.image.http;
 
-import com.river.image.MyApplication;
+import com.river.image.common.MyApplication;
 import com.river.image.bean.GirlsBean;
 import com.river.image.bean.JokeBean;
 import com.river.image.bean.NewsBean;

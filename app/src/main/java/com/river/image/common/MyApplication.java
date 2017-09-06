@@ -1,4 +1,4 @@
-package com.river.image;
+package com.river.image.common;
 
 import android.app.Application;
 import android.content.Context;

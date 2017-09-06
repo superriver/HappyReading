@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 @ActivityFragmentInject(contentViewId = R.layout.image_girl_detail) public class ImageDetailActivity
     extends BaseActivity {
- ImageDetailFragment mGirlFragment;
+  ImageDetailFragment mGirlFragment;
   @BindView(R.id.toolbar) Toolbar mToolbar;
 
   @Override protected int getFragmentContentId() {
@@ -32,8 +32,8 @@ import org.greenrobot.eventbus.ThreadMode;
     setSupportActionBar(mToolbar);
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-  public void onMessageEvent(MessageEvent event){
+  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+  public void onMessageEvent(MessageEvent event) {
     mGirlFragment = new ImageDetailFragment(event);
     if (null == getSupportFragmentManager().getFragments()) {
       BaseFragment firstFragment = mGirlFragment;
@@ -43,13 +43,13 @@ import org.greenrobot.eventbus.ThreadMode;
     }
   }
 
-
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_girl, menu);
     return true;
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
     int id = item.getItemId();
     if (id == R.id.action_save) {
       //调用保存的方法

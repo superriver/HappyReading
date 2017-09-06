@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import butterknife.BindView;
-import com.river.image.Constants;
+import com.river.image.common.Constants;
 import com.river.image.R;
 import com.river.image.base.BaseFragment;
 import com.river.image.bean.GirlsBean;
