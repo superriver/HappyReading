@@ -40,21 +40,21 @@
     <TextView
         android:id="@+id/action_news"
         style="@style/MenuText"
-        android:drawableLeft="@drawable/circle"
+        android:drawableLeft="@drawable/news"
         android:text="@string/news"
         />
 
     <TextView
         android:id="@+id/action_photo"
         style="@style/MenuText"
-        android:drawableLeft="@drawable/wallet"
+        android:drawableLeft="@drawable/image"
         android:text="@string/photo"
         />
 
     <TextView
        android:id="@+id/action_jokes"
          style="@style/MenuText"
-        android:drawableLeft="@drawable/coupon"
+        android:drawableLeft="@drawable/joke"
         android:text="@string/joke"
         />
 
