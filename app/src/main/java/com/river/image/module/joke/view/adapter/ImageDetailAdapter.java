@@ -1,4 +1,4 @@
-package com.river.image.module.joke.view.image;
+package com.river.image.module.joke.view.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.river.image.R;
 import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
 import com.river.image.widget.PinchImageView;
-import com.socks.library.KLog;
 import java.util.List;
 
 /**

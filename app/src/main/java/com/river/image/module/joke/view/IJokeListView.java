@@ -8,5 +8,5 @@ import com.river.image.bean.JokeBean;
  */
 
 public interface IJokeListView extends BaseView{
-  void updateJokeList(JokeBean jokeBean,String type);
+  void updateJokeList(JokeBean jokeBean,String errorMsg,String type);
 }

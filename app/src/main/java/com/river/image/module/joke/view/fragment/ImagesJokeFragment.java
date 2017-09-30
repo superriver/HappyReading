@@ -1,4 +1,4 @@
-package com.river.image.module.joke;
+package com.river.image.module.joke.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +10,15 @@ import com.river.image.R;
 import com.river.image.base.BaseFragment;
 import com.river.image.bean.JokeBean;
 import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
-import com.river.image.bean.MessageEvent;
 import com.river.image.common.DataType;
+import com.river.image.event.MessageEvent;
+import com.river.image.module.joke.view.adapter.ImagesJokesAdapter;
 import com.river.image.module.joke.presenter.IJokeListPresenter;
 import com.river.image.module.joke.presenter.IJokeListPresenterImpl;
 import com.river.image.module.joke.view.IJokeListView;
-import com.river.image.module.joke.view.image.ImageDetailActivity;
+import com.river.image.module.joke.view.activity.ImageDetailActivity;
 import java.util.ArrayList;
+import java.util.List;
 import org.greenrobot.eventbus.EventBus;
 
 /**
@@ -27,7 +29,7 @@ public class ImagesJokeFragment extends BaseFragment<IJokeListPresenter> impleme
   private String mType;
   private static final String JOKE_TYPE = "joke_type";
   @BindView(R.id.joke_recycler_view) EasyRecyclerView mRecyclerView;
-  private ArrayList<ContentlistBean> mImageList;
+  private List<ContentlistBean> mImageList;
   private ImagesJokesAdapter mImagesJokesAdapter;
 
   @Override protected int getLayoutId() {
@@ -44,7 +46,6 @@ public class ImagesJokeFragment extends BaseFragment<IJokeListPresenter> impleme
   private void initRecyclerView() {
     mImageList = new ArrayList<>();
     mImagesJokesAdapter = new ImagesJokesAdapter(mActivity);
-    //mImagesJokesAdapter.addAll(mImageList);
     StaggeredGridLayoutManager staggeredGridLayoutManager =
         new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
     mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -52,10 +53,7 @@ public class ImagesJokeFragment extends BaseFragment<IJokeListPresenter> impleme
     mImagesJokesAdapter.setOnItemClickListener(position -> {
       Intent intent = new Intent(mActivity, ImageDetailActivity.class);
       // RxBus.get().post("imageJoke",mImageList);
-       EventBus.getDefault().postSticky(new MessageEvent(position,mImageList));
-      //intent.putParcelableArrayListExtra("image", mImageList);
-      //intent.putExtra("image",mImageList);
-     // intent.putExtra("current", position);
+       EventBus.getDefault().postSticky(new MessageEvent<>(position,mImageList));
       startActivity(intent);
     });
     mImagesJokesAdapter.setMore(R.layout.load_more_layout,
@@ -72,7 +70,7 @@ public class ImagesJokeFragment extends BaseFragment<IJokeListPresenter> impleme
 
     );
   }
-  @Override public void updateJokeList(JokeBean jokeBean, String type) {
+  @Override public void updateJokeList(JokeBean jokeBean, String error,String type) {
     switch (type) {
       case DataType.DATA_LOAD_MORE_SUCCESS:
         mImageList.addAll(jokeBean.showapi_res_body.contentlist);

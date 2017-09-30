@@ -1,4 +1,4 @@
-package com.river.image.module.joke.view.image;
+package com.river.image.module.joke.view.activity;
 
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -9,7 +9,8 @@ import com.river.image.R;
 import com.river.image.annotation.ActivityFragmentInject;
 import com.river.image.base.BaseActivity;
 import com.river.image.base.BaseFragment;
-import com.river.image.bean.MessageEvent;
+import com.river.image.event.MessageEvent;
+import com.river.image.module.joke.view.fragment.ImageDetailFragment;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

@@ -1,4 +1,4 @@
-package com.river.image.module.joke;
+package com.river.image.module.joke.view.adapter;
 
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,8 +31,6 @@ public class ImagesJokesHolder extends BaseViewHolder<ContentlistBean> {
           .diskCacheStrategy(DiskCacheStrategy.RESULT)
           .override(100,100)
           .into(mImageView);
-      //GifDrawable gifDrawable = new GifDrawable();
-      //GifDrawable gifDrawable = new GifDrawable();
       mTextView.setText(data.title);
     }
 

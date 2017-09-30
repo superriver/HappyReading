@@ -28,6 +28,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListView;
 import com.river.image.callback.OnLoadMoreListener;
+import com.socks.library.KLog;
 
 /**
  * Author :    Chutaux Robin
@@ -63,6 +64,7 @@ public class ExpandableLayoutListView extends ListView
         {
             if (index != (position - getFirstVisiblePosition()))
             {
+                KLog.d("huang","-"+getFirstVisiblePosition()+"--"+position);
                 ExpandableLayoutItem
                     currentExpandableLayout = (ExpandableLayoutItem) getChildAt(index).findViewWithTag(ExpandableLayoutItem.class.getName());
                 currentExpandableLayout.hide();

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.river.image.module.news.ui.NewsDetailActivity"
-
+    android:background="@drawable/shape_rectangle_with_radius">
     >
   <TextView
       android:id="@+id/tv_news_detail_title"

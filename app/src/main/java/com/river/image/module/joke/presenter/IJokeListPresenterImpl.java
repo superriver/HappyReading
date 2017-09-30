@@ -7,7 +7,6 @@ import com.river.image.http.ApiConfig;
 import com.river.image.module.joke.model.IJokeModel;
 import com.river.image.module.joke.model.IJokeModelImpl;
 import com.river.image.module.joke.view.IJokeListView;
-import com.socks.library.KLog;
 
 /**
  * Created by Administrator on 2016/11/28.
@@ -16,36 +15,38 @@ import com.socks.library.KLog;
 public class IJokeListPresenterImpl extends BasePresenterImpl<IJokeListView,JokeBean> implements
     IJokeListPresenter {
   private IJokeModel mJokeModel =null;
-  private int maxResult=20;
   private int page=1;
   private boolean isRefresh=true;
   private String dataType;
   public IJokeListPresenterImpl(IJokeListView jokeListView,String type) {
     super(jokeListView);
     mJokeModel=new IJokeModelImpl();
-    startLoadData(type);
+    startLoadData(type,page);
   }
 
-  @Override public void startLoadData(String type) {
+  @Override public void startLoadData(String type,int page) {
     dataType=type;
-    mSubscription=mJokeModel.requestJokeList(this, dataType, String.valueOf(maxResult), String.valueOf(page), ApiConfig.SHOWAPI_APPID, null, ApiConfig.SHOWAPI_SIGN);
+    mSubscription=mJokeModel.requestJokeList(this, dataType, "20", String.valueOf(page), ApiConfig.SHOWAPI_APPID, null, ApiConfig.SHOWAPI_SIGN);
   }
 
   @Override public void refreshData() {
     page=1;
     isRefresh=true;
-    startLoadData(dataType);
+    startLoadData(dataType,page);
   }
 
   @Override public void loadMoreData() {
-    KLog.d("TAG","loadMoreData-》"+page);
     isRefresh=false;
     page++;
-    startLoadData(dataType);
+    startLoadData(dataType,page);
   }
 
   @Override public void requestSuccess(JokeBean data) {
-    KLog.d("TAG","page-》"+page);
-    mView.updateJokeList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
+    mView.updateJokeList(data,"",isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
+  }
+
+  @Override public void requestError(String msg) {
+    super.requestError(msg);
+    mView.updateJokeList(null,msg,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
   }
 }

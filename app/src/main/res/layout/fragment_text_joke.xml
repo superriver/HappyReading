@@ -6,8 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <com.river.image.widget.expandablelayout.ExpandableLayoutListView
-        android:id="@+id/listview"
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/joke_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_progress="@layout/view_progress"
+        />
 </LinearLayout>

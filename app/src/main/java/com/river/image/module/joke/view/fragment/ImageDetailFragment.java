@@ -1,15 +1,18 @@
-package com.river.image.module.joke.view.image;
+package com.river.image.module.joke.view.fragment;
 
 import android.graphics.Bitmap;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import butterknife.BindView;
-import com.river.image.common.Constants;
 import com.river.image.R;
 import com.river.image.base.BaseFragment;
-import com.river.image.bean.MessageEvent;
+import com.river.image.bean.JokeBean;
+import com.river.image.common.Constants;
+import com.river.image.event.MessageEvent;
+import com.river.image.module.joke.view.adapter.ImageDetailAdapter;
 import com.river.image.utils.BitmapUtil;
 import com.river.image.widget.PinchImageView;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/9/22.
@@ -21,20 +24,23 @@ public class ImageDetailFragment extends BaseFragment implements ViewPager.OnPag
 
   @BindView(R.id.viewpager) ViewPager mViewPager;
   private MessageEvent event;
+private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
   public ImageDetailFragment(MessageEvent event) {
     this.event = event;
   }
 
 
   @Override protected void initData() {
-    mAdapter = new ImageDetailAdapter(mActivity, event.getData());
+    datas= (List<JokeBean.ShowapiResBodyBean.ContentlistBean>) event.getData();
+    mAdapter = new ImageDetailAdapter(mActivity,
+        datas);
     mViewPager.setAdapter(mAdapter);
     mViewPager.setCurrentItem(event.getPosition());
     mViewPager.addOnPageChangeListener(this);
   }
 
   public void onSave() {
-    String imgUrl = event.getData().get(event.getPosition()).img;
+    String imgUrl = datas.get(event.getPosition()).img;
     PinchImageView imageView = getCurrentImageView();
     Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
     boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.SAVE_DIR,

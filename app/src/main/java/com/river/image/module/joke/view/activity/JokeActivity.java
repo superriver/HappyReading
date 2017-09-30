@@ -1,4 +1,4 @@
-package com.river.image.module.joke;
+package com.river.image.module.joke.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import com.river.image.base.BaseFragmentAdapter;
 import com.river.image.http.ApiConfig;
 import com.river.image.module.joke.presenter.IJokePresenterImpl;
 import com.river.image.module.joke.view.IJokeView;
+import com.river.image.module.joke.view.fragment.ImagesJokeFragment;
+import com.river.image.module.joke.view.fragment.TextJokeFragment;
 import java.util.ArrayList;
 import java.util.List;
 

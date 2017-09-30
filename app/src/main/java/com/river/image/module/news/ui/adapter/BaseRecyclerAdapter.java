@@ -31,7 +31,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public static final int TYPE_ITEM = 2;
     public static final int TYPE_MORE = 3;
     public static final int TYPE_EMPTY = 4;
-    private static final int TYPE_MORE_FAIL = 5;
+    public static final int TYPE_MORE_FAIL = 5;
 
     protected List<T> mData;
     protected Context mContext;
@@ -204,6 +204,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public void addMoreData(List<T> data) {
         int startPos = mData.size();
         mData.addAll(data);
+
         notifyItemRangeInserted(startPos, data.size());
     }
 

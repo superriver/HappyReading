@@ -22,7 +22,7 @@ import java.util.List;
 public class ImageFragment extends BaseFragment<ImageContract.Presenter>
     implements ImageContract.View, android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener,
     RecyclerArrayAdapter.OnLoadMoreListener {
-  ArrayList<GirlsBean.ResultsEntity> dataList;
+  private ArrayList<GirlsBean.ResultsEntity> dataList;
   @BindView(R.id.image_recycler_view) EasyRecyclerView mRecyclerView;
   @BindView(R.id.network_error_layout) ViewStub mNetworkErrorLayout;
   private View networkErrorView;

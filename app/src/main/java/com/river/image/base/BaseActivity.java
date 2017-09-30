@@ -16,14 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.github.mzule.fantasyslide.SideBar;
 import com.github.mzule.fantasyslide.SimpleFantasyListener;
 import com.river.image.R;
 import com.river.image.annotation.ActivityFragmentInject;
-import com.river.image.module.joke.JokeActivity;
+import com.river.image.module.joke.view.activity.JokeActivity;
 import com.river.image.module.news.ui.NewsActivity;
 import com.river.image.module.picture.view.home.HomeActivity;
 import com.river.image.utils.ActivityManager;
@@ -186,7 +185,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     if (view instanceof TextView) {
       String title = ((TextView) view).getText().toString();
       if (title.startsWith("星期")) {
-        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
       } else {
         //startActivity(UniversalActivity.newIntent(this, title));
       }
@@ -215,10 +214,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
       }
     }
     if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-      if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-      }
+      //if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+      //  mDrawerLayout.closeDrawer(GravityCompat.START);
+      //  finish();
+      //  return true;
+      //}
+      finish();
+      return true;
     }
     return super.onKeyDown(keyCode, event);
   }

@@ -28,7 +28,7 @@
       >
     <activity
         android:name=".module.news.ui.NewsActivity"
-        android:label="@string/news"
+        android:label="@string/app_name"
         android:theme="@style/BaseAppTheme.LauncherAppTheme"
         >
       <intent-filter>
@@ -54,11 +54,15 @@
         />
 
     <activity
-        android:name=".module.joke.JokeActivity"
+        android:name=".module.joke.view.activity.JokeActivity"
         android:label="@string/title_activity_joke"
         android:theme="@style/BaseAppTheme.AppTheme"
         />
-    <activity android:name=".module.joke.view.image.ImageDetailActivity"
+    <activity android:name=".module.joke.view.activity.ImageDetailActivity"
+        android:label="@string/title_activity_joke"
+        android:theme="@style/BaseAppTheme.AppTheme"
+        />
+    <activity android:name=".module.joke.view.activity.TextJokeDetailActivity"
         android:label="@string/title_activity_joke"
         android:theme="@style/BaseAppTheme.AppTheme"
         />

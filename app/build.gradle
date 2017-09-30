@@ -88,4 +88,6 @@ dependencies {
   //compile 'com.loopeer.library:cardstack:1.0.2'
 
   compile 'org.greenrobot:eventbus:3.0.0'
+
+  compile 'com.ericliu.asyncexpandablelist:asyncexpandablelist:1.1.0'
 }

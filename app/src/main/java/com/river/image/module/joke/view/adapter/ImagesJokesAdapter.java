@@ -1,10 +1,11 @@
-package com.river.image.module.joke;
+package com.river.image.module.joke.view.adapter;
 
 import android.content.Context;
 import android.view.ViewGroup;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.river.image.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
+
 /**
  * Created by Administrator on 2016/9/14.
  */

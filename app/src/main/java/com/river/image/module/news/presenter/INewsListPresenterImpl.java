@@ -7,7 +7,6 @@ import com.river.image.http.ApiConfig;
 import com.river.image.module.news.model.INewsListModel;
 import com.river.image.module.news.model.INewsListModelImpl;
 import com.river.image.module.news.view.INewsListView;
-import com.socks.library.KLog;
 
 /**
  * Created by Administrator on 2016/10/25.
@@ -30,7 +29,6 @@ public class INewsListPresenterImpl extends BasePresenterImpl<INewsListView, New
     page=1;
     maxResult=20;
     isRefresh=true;
-
     startLoadData(channelId, channelName,page);
   }
 
@@ -48,11 +46,12 @@ public class INewsListPresenterImpl extends BasePresenterImpl<INewsListView, New
   }
 
   @Override public void requestSuccess(NewsBean data) {
-    KLog.d("TAG","requestSuccess->"+page);
-    mView.updateNewsList(data,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
+    mView.updateNewsList(data,"",isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
   }
 
   @Override public void requestError(String msg) {
     super.requestError(msg);
+    mView.updateNewsList(null,msg,isRefresh? DataType.DATA_REFRESH_SUCCESS:DataType.DATA_LOAD_MORE_SUCCESS);
+
   }
 }

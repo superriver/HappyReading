@@ -2,7 +2,6 @@ package com.river.image.module.news.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -32,10 +31,9 @@ public class NewsDetailActivity extends BaseActivity {
 
   @Override protected void initView() {
     setSupportActionBar(mToolbar);
-    fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null)
-        .show());
-
+    //fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+    //    .setAction("Action", null)
+    //    .show());
     initData();
   }
 
@@ -49,7 +47,7 @@ public class NewsDetailActivity extends BaseActivity {
       }
     }
     if (mContentBean.imageurls.size() == 0) {
-      //mImageView.setImageResource(R.drawable.ic_header);
+      mImageView.setImageResource(R.drawable.ic_header);
     } else {
       Glide.with(NewsDetailActivity.this)
           .load(mContentBean.imageurls.get(0).url)

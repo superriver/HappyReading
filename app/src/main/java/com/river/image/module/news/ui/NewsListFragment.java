@@ -25,6 +25,7 @@ import com.river.image.module.news.ui.adapter.BaseRecyclerAdapter;
 import com.river.image.module.news.ui.adapter.BaseRecyclerViewHolder;
 import com.river.image.module.news.view.INewsListView;
 import com.river.image.utils.UnitTransform;
+import com.socks.library.KLog;
 import java.util.List;
 
 /**
@@ -54,10 +55,6 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
   }
 
   @Override protected void initData() {
-    //SimpleDateFormat fmt;
-    //fmt = new SimpleDateFormat("yyyyMMddHHmmss", new Locale("zh", "CN"));
-    //String sysDatetime = fmt.format(new Date());
-    //KLog.d("TAG", "time1-------->" + sysDatetime);
     mPresenter = new INewsListPresenterImpl(this);
     mPresenter.startLoadData(mNewsChannelId, mNewsChannelName,1);
   }
@@ -72,8 +69,9 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
     return newsFragment;
   }
 
-  @Override public void updateNewsList(NewsBean newsBean,String type) {
+  @Override public void updateNewsList(NewsBean newsBean,String msg,String type) {
     contentList=newsBean.showapi_res_body.pagebean.contentlist;
+    KLog.d("huang","---"+contentList.size());
     if(mBaseRecyclerAdapter==null){
       initNewsList(contentList);
     }
@@ -83,14 +81,17 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
         mBaseRecyclerAdapter.addMoreData(contentList);
         break;
       case DataType.DATA_LOAD_MORE_FAIL:
-
+        //mBaseRecyclerAdapter.showEmptyView(true,"加载失败");
+        mBaseRecyclerAdapter.loadMoreFailed(msg);
         break;
       case DataType.DATA_REFRESH_SUCCESS:
         mBaseRecyclerAdapter.enableLoadMore(true);
         mBaseRecyclerAdapter.setData(contentList);
         break;
       case DataType.DATA_REFRESH_FAIL:
-
+        mBaseRecyclerAdapter.enableLoadMore(false);
+        mBaseRecyclerAdapter.showEmptyView(true,msg);
+        mBaseRecyclerAdapter.notifyDataSetChanged();
         break;
     }
   }
@@ -113,7 +114,7 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
               .diskCacheStrategy(DiskCacheStrategy.SOURCE)
               .into(holder.getImageView(R.id.iv_news_summary_photo));
         }
-        //KLog.d("TAG","item.title->"+item.title);
+       // KLog.d("TAG","item.title->"+item.title);
         holder.getTextView(R.id.tv_news_summary_title).setText(item.title);
         holder.getTextView(R.id.tv_news_summary_digest).setText(item.desc);
         holder.getTextView(R.id.tv_news_summary_ptime).setText(item.pubDate);

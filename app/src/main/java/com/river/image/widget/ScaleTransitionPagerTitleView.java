@@ -1,4 +1,4 @@
-package com.river.image.module.joke;
+package com.river.image.widget;
 
 import android.content.Context;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
