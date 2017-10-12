@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.river.image.module.news.ui.NewsDetailActivity"
+    tools:context="com.river.reading.module.news.ui.NewsDetailActivity"
     android:background="@drawable/shape_rectangle_with_radius">
     >
   <TextView
