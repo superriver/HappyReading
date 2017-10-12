@@ -14,7 +14,6 @@ import com.river.image.R;
 import com.river.reading.callback.OnEmptyClickListener;
 import com.river.reading.callback.OnItemClickListener;
 import com.river.reading.callback.OnLoadMoreListener;
-import com.socks.library.KLog;
 import java.util.ArrayList;
 import java.util.List;
 
