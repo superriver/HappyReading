@@ -1,6 +1,7 @@
 package com.river.reading.module.joke.view.fragment;
 
 import android.graphics.Bitmap;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import butterknife.BindView;
@@ -24,7 +25,7 @@ public class ImageDetailFragment extends BaseFragment{
 
   @BindView(R.id.viewpager) ViewPager mViewPager;
   private MessageEvent event;
-private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
+  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
   public ImageDetailFragment(MessageEvent event) {
     this.event = event;
   }
@@ -46,9 +47,9 @@ private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
     boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.SAVE_DIR,
         imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true);
     if (isSuccess) {
-      //Snackbar.make(mRootView,"下载完成，请主人验收",Snackbar.LENGTH_LONG).show();
+      Snackbar.make(mViewPager,"下载完成，请主人验收", Snackbar.LENGTH_LONG).show();
     } else {
-      //Snackbar.make(mRootView,"下载失败，请重新下载",Snackbar.LENGTH_LONG).show();
+      Snackbar.make(mViewPager,"下载失败，请重新下载",Snackbar.LENGTH_LONG).show();
     }
   }
 
