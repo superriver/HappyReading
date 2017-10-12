@@ -19,7 +19,6 @@ public class IJokeModelImpl implements IJokeModel<JokeBean> {
     return RetrofitManager.getInstance(HostType.NEWS_HOST).getTextJokeList(type,maxResult,page,appid,timestamp,showapi_sign)
         .subscribe(new Subscriber<JokeBean>() {
           @Override public void onCompleted() {
-           KLog.d("TAG","Joke-->OnCompleted");
           }
 
           @Override public void onError(Throwable e) {

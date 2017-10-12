@@ -9,6 +9,8 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.river.image.R;
 import com.river.reading.base.BaseFragment;
+import com.river.reading.base.BaseRecyclerAdapter;
+import com.river.reading.base.BaseRecyclerViewHolder;
 import com.river.reading.bean.JokeBean;
 import com.river.reading.callback.OnItemClickAdapter;
 import com.river.reading.callback.OnLoadMoreListener;
@@ -19,10 +21,7 @@ import com.river.reading.module.joke.presenter.IJokeListPresenter;
 import com.river.reading.module.joke.presenter.IJokeListPresenterImpl;
 import com.river.reading.module.joke.view.IJokeListView;
 import com.river.reading.module.joke.view.activity.TextJokeDetailActivity;
-import com.river.reading.module.news.ui.adapter.BaseRecyclerAdapter;
-import com.river.reading.module.news.ui.adapter.BaseRecyclerViewHolder;
 import com.river.reading.utils.UnitTransform;
-import com.socks.library.KLog;
 import java.util.List;
 import org.greenrobot.eventbus.EventBus;
 
@@ -31,8 +30,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implements IJokeListView {
-  // @BindView(R.id.listview) ExpandableLayoutListView listView;
-  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas=null;
+  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
   private BaseRecyclerAdapter<JokeBean.ShowapiResBodyBean.ContentlistBean> mBaseRecyclerAdapter;
   @BindView(R.id.joke_recycler_view) EasyRecyclerView mEasyRecyclerView;
 
@@ -53,7 +51,6 @@ public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implement
 
       @Override
       public void bindData(BaseRecyclerViewHolder holder, int position, JokeBean.ShowapiResBodyBean.ContentlistBean item) {
-
         holder.getTextView(R.id.tv_joke_title).setText(item.title);
       }
     };
@@ -86,10 +83,11 @@ public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implement
 
   @Override public void updateJokeList(JokeBean jokeBean,String error, String type) {
     datas=jokeBean.showapi_res_body.contentlist;
-    KLog.d("huang","type---"+type);
-    if (null != datas) {
+
+    if ( mBaseRecyclerAdapter==null) {
       initList(datas);
     }
+
     switch (type) {
       case DataType.DATA_LOAD_MORE_SUCCESS:
         mBaseRecyclerAdapter.loadMoreSuccess();

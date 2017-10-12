@@ -8,7 +8,6 @@ import com.river.reading.http.ApiConfig;
 import com.river.reading.module.news.model.INewsChannelModel;
 import com.river.reading.module.news.model.INewsChannelModelImpl;
 import com.river.reading.module.news.view.INewsChannelView;
-import com.socks.library.KLog;
 import java.util.List;
 
 /**
@@ -22,15 +21,9 @@ public class INewsChannelPresenterImpl extends BasePresenterImpl<INewsChannelVie
   public INewsChannelPresenterImpl(INewsChannelView view) {
     super(view);
     mINewsChannelModel = new INewsChannelModelImpl();
-    //try{
-    //
-    //}catch (IOException io){
-    //  io.printStackTrace();
-    //}
     NewsChannelDB newsChannelDB = new NewsChannelDB();
     List<NewsChannelBean> channel =  newsChannelDB.selectDB();
     if(channel.size()==0){
-      KLog.d("TAG","INewsChannelPresenterImpl");
       mSubscription = mINewsChannelModel.requestNewsChannel(this, ApiConfig.SHOWAPI_APPID,null,ApiConfig.SHOWAPI_SIGN);
     }else {
       mView.getDataByDB(channel);

@@ -14,6 +14,8 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.river.image.R;
 import com.river.reading.base.BaseFragment;
+import com.river.reading.base.BaseRecyclerAdapter;
+import com.river.reading.base.BaseRecyclerViewHolder;
 import com.river.reading.bean.NewsBean;
 import com.river.reading.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;
 import com.river.reading.callback.OnItemClickAdapter;
@@ -21,8 +23,6 @@ import com.river.reading.callback.OnLoadMoreListener;
 import com.river.reading.common.DataType;
 import com.river.reading.module.news.presenter.INewsListPresenter;
 import com.river.reading.module.news.presenter.INewsListPresenterImpl;
-import com.river.reading.module.news.ui.adapter.BaseRecyclerAdapter;
-import com.river.reading.module.news.ui.adapter.BaseRecyclerViewHolder;
 import com.river.reading.module.news.view.INewsListView;
 import com.river.reading.utils.UnitTransform;
 import com.socks.library.KLog;
@@ -71,10 +71,10 @@ public class NewsListFragment extends BaseFragment<INewsListPresenter> implement
 
   @Override public void updateNewsList(NewsBean newsBean,String msg,String type) {
     contentList=newsBean.showapi_res_body.pagebean.contentlist;
-    KLog.d("huang","---"+contentList.size());
     if(mBaseRecyclerAdapter==null){
       initNewsList(contentList);
     }
+
     switch (type) {
       case DataType.DATA_LOAD_MORE_SUCCESS:
         mBaseRecyclerAdapter.loadMoreSuccess();

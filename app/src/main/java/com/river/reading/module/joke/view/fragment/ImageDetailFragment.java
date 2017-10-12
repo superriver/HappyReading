@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Administrator on 2016/9/22.
  */
 
-public class ImageDetailFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class ImageDetailFragment extends BaseFragment{
   //private Observable<List<ContentlistBean>> mImageJokeObservable;
   private ImageDetailAdapter mAdapter;
 
@@ -36,7 +36,7 @@ private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
         datas);
     mViewPager.setAdapter(mAdapter);
     mViewPager.setCurrentItem(event.getPosition());
-    mViewPager.addOnPageChangeListener(this);
+   // mViewPager.addOnPageChangeListener(this);
   }
 
   public void onSave() {
@@ -94,16 +94,16 @@ private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
     return R.layout.fragment_gril;
   }
 
-  @Override
-  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-  }
-
-  @Override public void onPageSelected(int position) {
-
-  }
-
-  @Override public void onPageScrollStateChanged(int state) {
-
-  }
+  //@Override
+  //public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+  //
+  //}
+  //
+  //@Override public void onPageSelected(int position) {
+  //
+  //}
+  //
+  //@Override public void onPageScrollStateChanged(int state) {
+  //
+  //}
 }

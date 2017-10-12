@@ -38,13 +38,6 @@ public class NewsPagerAdapter extends FragmentPagerAdapter {
   }
 
 
-  //public void setData(List<BaseFragment> baseFragments,List<String> titleList){
-  //  mFragments=baseFragments;
-  //  mFragmentTitles=titleList;
-  //}
-  //public void clear() {
-  //  mFragments.clear();
-  //  mFragmentTitles.clear();
-  //}
+
 
 }
