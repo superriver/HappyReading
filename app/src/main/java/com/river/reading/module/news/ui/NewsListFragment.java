@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.base.BaseFragment;
 import com.river.reading.bean.NewsBean;
 import com.river.reading.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;

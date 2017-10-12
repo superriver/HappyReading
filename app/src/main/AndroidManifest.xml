@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.river.reading"
+    package="com.river.image"
     >
 
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -29,7 +29,7 @@
     <activity
         android:name="com.river.reading.module.news.ui.NewsActivity"
         android:label="@string/app_name"
-        android:theme="@style/BaseAppTheme.LauncherAppTheme"
+        android:theme="@style/BaseAppTheme.AppTheme"
         >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -40,7 +40,7 @@
 
     <activity
         android:name="com.river.reading.module.picture.view.image.GirlActivity"
-        android:theme="@style/BaseAppTheme.LauncherAppTheme"
+        android:theme="@style/BaseAppTheme.AppTheme"
         />
     <activity
         android:name="com.river.reading.module.picture.view.home.HomeActivity"

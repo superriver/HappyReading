@@ -5,7 +5,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.BindView;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.annotation.ActivityFragmentInject;
 import com.river.reading.base.BaseActivity;
 import com.river.reading.base.BaseFragment;

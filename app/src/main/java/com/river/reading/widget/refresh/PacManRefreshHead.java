@@ -14,7 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
-import com.river.reading.R;
+import com.river.image.R;
 
 /**
  * ClassName: PacManRefreshHead<p>

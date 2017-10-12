@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
-import com.river.reading.R;
-import com.river.reading.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
+import com.river.image.R;
 import com.river.reading.widget.PinchImageView;
+import com.river.reading.bean.JokeBean;
 import java.util.List;
 
 /**
@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class ImageDetailAdapter extends PagerAdapter{
   private Context mContext;
-  private List<ContentlistBean> datas;
+  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas;
   private LayoutInflater mInflater;
   private View mCurrentView;
 
-  public ImageDetailAdapter(Context context, List<ContentlistBean> datas) {
+  public ImageDetailAdapter(Context context, List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas) {
     mContext = context;
     this.datas = datas;
     mInflater=LayoutInflater.from(context);

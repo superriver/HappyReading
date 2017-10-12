@@ -7,7 +7,7 @@ import rx.Subscription;
  * Created by Administrator on 2016/10/17.
  */
 
-public class BasePresenterImpl<T extends BaseView,V> implements BasePresenter, RequestCallBack<V>{
+public class BasePresenterImpl<T extends BaseView,V> implements BasePresenter, RequestCallBack<V> {
   protected T mView;
   protected Subscription mSubscription;
   public BasePresenterImpl(T view) {

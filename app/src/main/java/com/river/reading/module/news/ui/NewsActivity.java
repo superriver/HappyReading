@@ -6,7 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.annotation.ActivityFragmentInject;
 import com.river.reading.base.BaseActivity;
 import com.river.reading.base.BaseFragment;

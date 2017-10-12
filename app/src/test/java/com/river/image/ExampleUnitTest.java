@@ -1,4 +1,4 @@
-package com.river.reading;
+package com.river.image;
 
 import org.junit.Test;
 

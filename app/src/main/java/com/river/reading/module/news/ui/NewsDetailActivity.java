@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.annotation.ActivityFragmentInject;
 import com.river.reading.base.BaseActivity;
 import com.river.reading.bean.NewsBean.ShowapiResBodyBean.PageBean.ContentBean;

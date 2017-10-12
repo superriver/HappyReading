@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.callback.OnEmptyClickListener;
 import com.river.reading.callback.OnItemClickListener;
 import com.river.reading.callback.OnLoadMoreListener;

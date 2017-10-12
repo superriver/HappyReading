@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.github.mzule.fantasyslide.SideBar;
 import com.github.mzule.fantasyslide.SimpleFantasyListener;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.annotation.ActivityFragmentInject;
 import com.river.reading.module.joke.view.activity.JokeActivity;
 import com.river.reading.module.news.ui.NewsActivity;

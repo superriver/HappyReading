@@ -7,10 +7,9 @@ import android.view.View;
 import butterknife.BindView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.base.BaseFragment;
 import com.river.reading.bean.JokeBean;
-import com.river.reading.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
 import com.river.reading.callback.OnItemClickAdapter;
 import com.river.reading.callback.OnLoadMoreListener;
 import com.river.reading.common.DataType;
@@ -33,8 +32,8 @@ import org.greenrobot.eventbus.EventBus;
 
 public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implements IJokeListView {
   // @BindView(R.id.listview) ExpandableLayoutListView listView;
-  private List<ContentlistBean> datas=null;
-  private BaseRecyclerAdapter<ContentlistBean> mBaseRecyclerAdapter;
+  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas=null;
+  private BaseRecyclerAdapter<JokeBean.ShowapiResBodyBean.ContentlistBean> mBaseRecyclerAdapter;
   @BindView(R.id.joke_recycler_view) EasyRecyclerView mEasyRecyclerView;
 
   @Override protected int getLayoutId() {
@@ -46,14 +45,14 @@ public class TextJokeFragment extends BaseFragment<IJokeListPresenter> implement
     // mPresenter.startLoadData(ApiConfig.TEXT_JOKE);
   }
 
-  private void initList(List<ContentlistBean> datas) {
-    mBaseRecyclerAdapter = new BaseRecyclerAdapter<ContentlistBean>(getActivity(), datas) {
+  private void initList(List<JokeBean.ShowapiResBodyBean.ContentlistBean> datas) {
+    mBaseRecyclerAdapter = new BaseRecyclerAdapter<JokeBean.ShowapiResBodyBean.ContentlistBean>(getActivity(), datas) {
       @Override public int getItemLayoutId(int viewType) {
         return R.layout.item_jokes_list;
       }
 
       @Override
-      public void bindData(BaseRecyclerViewHolder holder, int position, ContentlistBean item) {
+      public void bindData(BaseRecyclerViewHolder holder, int position, JokeBean.ShowapiResBodyBean.ContentlistBean item) {
 
         holder.getTextView(R.id.tv_joke_title).setText(item.title);
       }

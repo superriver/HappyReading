@@ -15,7 +15,8 @@ import java.util.List;
  * Created by Administrator on 2016/10/17.
  */
 
-public class INewsChannelPresenterImpl extends BasePresenterImpl<INewsChannelView,NewsChannel> implements INewsChannelPresenter{
+public class INewsChannelPresenterImpl extends BasePresenterImpl<INewsChannelView,NewsChannel>
+    implements INewsChannelPresenter{
   protected INewsChannelModel mINewsChannelModel;
   //private boolean isFirst=true;
   public INewsChannelPresenterImpl(INewsChannelView view) {

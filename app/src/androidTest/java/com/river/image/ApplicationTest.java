@@ -1,4 +1,4 @@
-package com.river.reading;
+package com.river.image;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

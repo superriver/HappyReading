@@ -2,14 +2,14 @@ package com.river.reading.module.joke.view.adapter;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
-import com.river.reading.R;
-import com.river.reading.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
+import com.river.image.R;
+import com.river.reading.bean.JokeBean;
 
 /**
  * Created by Administrator on 2017/2/8.
  */
 
-public class TextJokesHolder extends BaseViewHolder<ContentlistBean> {
+public class TextJokesHolder extends BaseViewHolder<JokeBean.ShowapiResBodyBean.ContentlistBean> {
   private TextView tvHeader,tvTitle,tvFrom,tvBody;
   public TextJokesHolder(ViewGroup itemView) {
     super(itemView, R.layout.item_jokes_list);
@@ -19,7 +19,7 @@ public class TextJokesHolder extends BaseViewHolder<ContentlistBean> {
     tvBody= $(R.id.tv_news_detail_body);
   }
 
-  @Override public void setData(ContentlistBean data) {
+  @Override public void setData(JokeBean.ShowapiResBodyBean.ContentlistBean data) {
     super.setData(data);
     tvHeader.setText(data.title);
     tvTitle.setText(data.title);

@@ -7,7 +7,7 @@ import android.view.ViewStub;
 import butterknife.BindView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.base.BaseFragment;
 import com.river.reading.bean.GirlsBean;
 import com.river.reading.module.picture.ImageContract;

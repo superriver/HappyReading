@@ -7,6 +7,6 @@ import com.river.reading.base.BaseView;
  * Created by Administrator on 2016/11/24.
  */
 
-public interface IJokeView extends BaseView{
+public interface IJokeView extends BaseView {
   void initViewPager();
 }

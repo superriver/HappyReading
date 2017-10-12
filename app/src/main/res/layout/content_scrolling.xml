@@ -7,7 +7,7 @@
     tools:showIn="@layout/content_news_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.river.reading.module.news.ui.NewsDetailActivity"
+    tools:context="com.river.image.com.river.reading.module.news.ui.NewsDetailActivity"
     >
 
   <RelativeLayout

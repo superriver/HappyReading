@@ -6,10 +6,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.base.BaseFragment;
 import com.river.reading.bean.JokeBean;
-import com.river.reading.bean.JokeBean.ShowapiResBodyBean.ContentlistBean;
 import com.river.reading.common.DataType;
 import com.river.reading.event.MessageEvent;
 import com.river.reading.module.joke.view.adapter.ImagesJokesAdapter;
@@ -29,7 +28,7 @@ public class ImagesJokeFragment extends BaseFragment<IJokeListPresenter> impleme
   private String mType;
   private static final String JOKE_TYPE = "joke_type";
   @BindView(R.id.joke_recycler_view) EasyRecyclerView mRecyclerView;
-  private List<ContentlistBean> mImageList;
+  private List<JokeBean.ShowapiResBodyBean.ContentlistBean> mImageList;
   private ImagesJokesAdapter mImagesJokesAdapter;
 
   @Override protected int getLayoutId() {

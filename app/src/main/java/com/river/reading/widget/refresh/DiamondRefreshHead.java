@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import com.river.reading.R;
+import com.river.image.R;
 
 /**
  * ClassName: UcRerfreshHead<p>

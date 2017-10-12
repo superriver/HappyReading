@@ -5,7 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 import butterknife.BindView;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.annotation.ActivityFragmentInject;
 import com.river.reading.base.BaseActivity;
 import com.river.reading.bean.JokeBean;

@@ -1,5 +1,6 @@
 package com.river.reading.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.realm.RealmObject;
 
 /**

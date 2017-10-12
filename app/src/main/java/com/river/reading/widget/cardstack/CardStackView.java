@@ -14,7 +14,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.OverScroller;
-import com.river.reading.R;
+import com.river.image.R;
 import java.util.ArrayList;
 import java.util.List;
 

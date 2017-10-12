@@ -7,7 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.annotation.ActivityFragmentInject;
 import com.river.reading.base.BaseActivity;
 import com.river.reading.base.BaseFragment;
@@ -25,7 +25,7 @@ import java.util.List;
     toolbarTitle = R.string.joke,
     hasNavigationView = true
 )
-public class JokeActivity extends BaseActivity implements IJokeView{
+public class JokeActivity extends BaseActivity implements IJokeView {
   private static final String JOKE_TYPE = "joke_type";
   private static final String POSITION = "position";
 
@@ -70,7 +70,8 @@ public class JokeActivity extends BaseActivity implements IJokeView{
     fragments.add(mImageJokeFragment);
     fragments.add(mDynamicJokeFragment);
     // 初始化ViewPager
-    BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), fragments,tabTitle);
+    BaseFragmentAdapter
+        adapter = new BaseFragmentAdapter(getSupportFragmentManager(), fragments,tabTitle);
     mViewPager.setAdapter(adapter);
 
     mTabLayout.addTab(mTabLayout.newTab().setText(tabTitle[0]));

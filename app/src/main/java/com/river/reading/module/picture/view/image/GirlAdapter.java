@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.bean.GirlsBean;
 import com.river.reading.widget.PinchImageView;
 import java.util.ArrayList;

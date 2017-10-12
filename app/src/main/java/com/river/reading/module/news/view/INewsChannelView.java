@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/29.
  */
-public interface INewsChannelView extends BaseView{
+public interface INewsChannelView extends BaseView {
     void getDataByNet(NewsChannel newsChannel);
     void getDataByDB(List<NewsChannelBean> channelBean);
 }

@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import butterknife.BindView;
 import com.river.reading.common.Constants;
-import com.river.reading.R;
+import com.river.image.R;
 import com.river.reading.base.BaseFragment;
 import com.river.reading.bean.GirlsBean;
 import com.river.reading.utils.BitmapUtil;

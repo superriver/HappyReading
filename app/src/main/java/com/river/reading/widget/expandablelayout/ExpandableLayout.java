@@ -33,7 +33,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import com.river.reading.R;
+import com.river.image.R;
 
 public class ExpandableLayout extends RelativeLayout
 {
